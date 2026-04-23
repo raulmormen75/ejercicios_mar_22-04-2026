@@ -19,3 +19,5 @@ src/**/*.d.ts
 public/generated/hotelling/*.png
 public/generated/hotelling/*.jpg
 public/generated/hotelling/*.webp
+
+.vercel
