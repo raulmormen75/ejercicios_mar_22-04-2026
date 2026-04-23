@@ -1,0 +1,3187 @@
+## Bloque de contenido para la aplicación web: Modelo de Hotelling y competencia espacial 🧭
+
+### 1. ¿De qué trata este tema? 🏪📍
+
+Este tema estudia **cómo compiten dos empresas cuando están ubicadas en una misma calle** y los consumidores deben desplazarse para comprar.
+
+La idea es sencilla: una persona no solo compara precios. También compara **qué tan lejos está cada empresa**. Entonces, el consumidor piensa algo como:
+
+\[
+\text{Costo total de comprar}=\text{precio}+\text{costo de traslado}
+\]
+
+Por ejemplo, si hay dos cafeterías en una calle, una persona puede preferir la cafetería más cara si está más cerca, porque caminar también “cuesta”. Ese costo puede ser tiempo, gasolina, cansancio o incomodidad.
+
+El punto más importante del ejercicio es encontrar al **consumidor indiferente**. Ese consumidor está justo en el lugar donde comprar en la empresa A o en la empresa B le da exactamente el mismo costo total.
+
+Ese consumidor divide el mercado:
+
+\[
+\text{Consumidores a la izquierda} \rightarrow \text{compran en A}
+\]
+
+\[
+\text{Consumidores a la derecha} \rightarrow \text{compran en B}
+\]
+
+Después, cada empresa elige su precio para maximizar ganancias. Como cada empresa sabe que su precio afecta cuántos consumidores atrae, el problema termina siendo un juego de precios. El resultado se llama **equilibrio de Nash**, que significa:
+
+\[
+\text{Ninguna empresa quiere cambiar su precio si la otra mantiene el suyo}
+\]
+
+---
+
+## 2. Nota importante antes de resolver ⚠️
+
+En la tarea aparece “costo lineal de transporte”. Eso significa que usaré:
+
+\[
+\text{Costo de transporte}=td
+\]
+
+donde \(d\) es la distancia.
+
+Entonces, la utilidad del consumidor que compra en la empresa \(i\) se puede escribir como:
+
+\[
+U_i=S-p_i-td_i
+\]
+
+donde:
+
+\[
+S=\text{satisfacción base por consumir}
+\]
+
+\[
+p_i=\text{precio de la empresa } i
+\]
+
+\[
+t=\text{costo por unidad de distancia}
+\]
+
+\[
+d_i=\text{distancia entre el consumidor y la empresa } i
+\]
+
+En tus apuntes del pizarrón aparece también una versión con:
+
+\[
+td^2
+\]
+
+Esa es la versión cuadrática. Cambia bastante los resultados. No conviene mezclar las dos. Primero resuelvo con costo lineal, porque eso dice la tarea. Al final dejo un anexo con la versión cuadrática para conectar con tus notas.
+
+---
+
+# 3. Planteamiento general del modelo lineal 🚶‍♂️🏪
+
+Supongamos una calle de longitud:
+
+\[
+L
+\]
+
+La empresa A está ubicada en:
+
+\[
+a
+\]
+
+La empresa B está ubicada en:
+
+\[
+b
+\]
+
+con:
+
+\[
+a<b
+\]
+
+Un consumidor está en el punto:
+
+\[
+x
+\]
+
+Si el consumidor está entre las dos empresas, entonces su distancia a A es:
+
+\[
+d_A=x-a
+\]
+
+y su distancia a B es:
+
+\[
+d_B=b-x
+\]
+
+La empresa A cobra:
+
+\[
+p_A
+\]
+
+La empresa B cobra:
+
+\[
+p_B
+\]
+
+El consumidor compara el costo total de comprar en A:
+
+\[
+p_A+t(x-a)
+\]
+
+contra el costo total de comprar en B:
+
+\[
+p_B+t(b-x)
+\]
+
+---
+
+## 4. Consumidor indiferente 🧍‍♂️⚖️
+
+El consumidor indiferente es aquel para quien ambos costos son iguales:
+
+\[
+p_A+t(x-a)=p_B+t(b-x)
+\]
+
+Ahora desarrollamos paso a paso.
+
+Primero expandimos los paréntesis:
+
+\[
+p_A+tx-ta=p_B+tb-tx
+\]
+
+Pasamos el término \(-tx\) del lado derecho al lado izquierdo:
+
+\[
+p_A+tx+tx-ta=p_B+tb
+\]
+
+Sumamos los términos \(tx+tx\):
+
+\[
+p_A+2tx-ta=p_B+tb
+\]
+
+Ahora pasamos \(p_A\) al lado derecho:
+
+\[
+2tx-ta=p_B-p_A+tb
+\]
+
+Pasamos \(-ta\) al lado derecho como \(+ta\):
+
+\[
+2tx=p_B-p_A+tb+ta
+\]
+
+Factorizamos \(t\) en los últimos dos términos:
+
+\[
+2tx=p_B-p_A+t(a+b)
+\]
+
+Dividimos todo entre \(2t\):
+
+\[
+x^*=\frac{p_B-p_A+t(a+b)}{2t}
+\]
+
+Separando la expresión:
+
+\[
+x^*=\frac{a+b}{2}+\frac{p_B-p_A}{2t}
+\]
+
+Este resultado es muy útil.
+
+\[
+x^*=\text{consumidor indiferente}
+\]
+
+Si \(p_A=p_B\), entonces:
+
+\[
+x^*=\frac{a+b}{2}
+\]
+
+Es decir, el consumidor indiferente queda justo a la mitad entre las dos empresas.
+
+Si \(p_B>p_A\), entonces:
+
+\[
+\frac{p_B-p_A}{2t}>0
+\]
+
+por lo tanto:
+
+\[
+x^*>\frac{a+b}{2}
+\]
+
+Eso significa que la empresa A, al ser más barata, atrae consumidores más hacia la derecha.
+
+---
+
+# 5. Demandas de las empresas 📊
+
+Si los consumidores están distribuidos uniformemente sobre la calle, la demanda de A es todo lo que queda a la izquierda del consumidor indiferente:
+
+\[
+q_A=x^*
+\]
+
+Entonces:
+
+\[
+q_A=\frac{a+b}{2}+\frac{p_B-p_A}{2t}
+\]
+
+La demanda de B es el resto del mercado:
+
+\[
+q_B=L-x^*
+\]
+
+Sustituimos \(x^*\):
+
+\[
+q_B=L-\left(\frac{a+b}{2}+\frac{p_B-p_A}{2t}\right)
+\]
+
+Distribuimos el signo negativo:
+
+\[
+q_B=L-\frac{a+b}{2}-\frac{p_B-p_A}{2t}
+\]
+
+También puede escribirse como:
+
+\[
+q_B=L-\frac{a+b}{2}+\frac{p_A-p_B}{2t}
+\]
+
+---
+
+# 6. Ganancias de las empresas 💰
+
+Cada empresa gana el margen por unidad multiplicado por su cantidad vendida.
+
+La ganancia de A es:
+
+\[
+\pi_A=(p_A-c_A)q_A
+\]
+
+Sustituimos \(q_A\):
+
+\[
+\pi_A=(p_A-c_A)\left(\frac{a+b}{2}+\frac{p_B-p_A}{2t}\right)
+\]
+
+La ganancia de B es:
+
+\[
+\pi_B=(p_B-c_B)q_B
+\]
+
+Sustituimos \(q_B\):
+
+\[
+\pi_B=(p_B-c_B)\left(L-\frac{a+b}{2}-\frac{p_B-p_A}{2t}\right)
+\]
+
+---
+
+# 7. Funciones de reacción 🧠
+
+Una función de reacción dice qué precio le conviene cobrar a una empresa dado el precio de la otra.
+
+## Empresa A
+
+Partimos de:
+
+\[
+\pi_A=(p_A-c_A)\left(\frac{a+b}{2}+\frac{p_B-p_A}{2t}\right)
+\]
+
+La demanda de A es:
+
+\[
+q_A=\frac{a+b}{2}+\frac{p_B-p_A}{2t}
+\]
+
+Cuando A sube su precio, su demanda baja. La pendiente de \(q_A\) respecto a \(p_A\) es:
+
+\[
+\frac{\partial q_A}{\partial p_A}=-\frac{1}{2t}
+\]
+
+Aplicamos la condición de máximo:
+
+\[
+\frac{\partial \pi_A}{\partial p_A}=0
+\]
+
+Usamos regla del producto:
+
+\[
+\frac{\partial \pi_A}{\partial p_A}=q_A+(p_A-c_A)\left(-\frac{1}{2t}\right)
+\]
+
+Igualamos a cero:
+
+\[
+q_A-\frac{p_A-c_A}{2t}=0
+\]
+
+Pasamos el segundo término al otro lado:
+
+\[
+q_A=\frac{p_A-c_A}{2t}
+\]
+
+Ahora sustituimos la demanda de A:
+
+\[
+\frac{a+b}{2}+\frac{p_B-p_A}{2t}=\frac{p_A-c_A}{2t}
+\]
+
+Multiplicamos todo por \(2t\):
+
+\[
+t(a+b)+p_B-p_A=p_A-c_A
+\]
+
+Pasamos \(-p_A\) al lado derecho:
+
+\[
+t(a+b)+p_B=p_A+p_A-c_A
+\]
+
+Sumamos \(p_A+p_A\):
+
+\[
+t(a+b)+p_B=2p_A-c_A
+\]
+
+Pasamos \(-c_A\) al lado izquierdo como \(+c_A\):
+
+\[
+t(a+b)+p_B+c_A=2p_A
+\]
+
+Dividimos entre \(2\):
+
+\[
+p_A=\frac{t(a+b)+p_B+c_A}{2}
+\]
+
+Esta es la función de reacción de A:
+
+\[
+R_A:\quad p_A=\frac{t(a+b)+p_B+c_A}{2}
+\]
+
+---
+
+## Empresa B
+
+La demanda de B es:
+
+\[
+q_B=L-\frac{a+b}{2}-\frac{p_B-p_A}{2t}
+\]
+
+Cuando B sube su precio, su demanda baja:
+
+\[
+\frac{\partial q_B}{\partial p_B}=-\frac{1}{2t}
+\]
+
+La ganancia de B es:
+
+\[
+\pi_B=(p_B-c_B)q_B
+\]
+
+Aplicamos la condición de máximo:
+
+\[
+\frac{\partial \pi_B}{\partial p_B}=0
+\]
+
+Usamos regla del producto:
+
+\[
+\frac{\partial \pi_B}{\partial p_B}=q_B+(p_B-c_B)\left(-\frac{1}{2t}\right)
+\]
+
+Igualamos a cero:
+
+\[
+q_B-\frac{p_B-c_B}{2t}=0
+\]
+
+Pasamos el segundo término al otro lado:
+
+\[
+q_B=\frac{p_B-c_B}{2t}
+\]
+
+Sustituimos \(q_B\):
+
+\[
+L-\frac{a+b}{2}-\frac{p_B-p_A}{2t}=\frac{p_B-c_B}{2t}
+\]
+
+Multiplicamos todo por \(2t\):
+
+\[
+2tL-t(a+b)-(p_B-p_A)=p_B-c_B
+\]
+
+Quitamos paréntesis:
+
+\[
+2tL-t(a+b)-p_B+p_A=p_B-c_B
+\]
+
+Pasamos \(-p_B\) al lado derecho:
+
+\[
+2tL-t(a+b)+p_A=p_B+p_B-c_B
+\]
+
+Sumamos \(p_B+p_B\):
+
+\[
+2tL-t(a+b)+p_A=2p_B-c_B
+\]
+
+Pasamos \(-c_B\) al lado izquierdo como \(+c_B\):
+
+\[
+2tL-t(a+b)+p_A+c_B=2p_B
+\]
+
+Factorizamos:
+
+\[
+t(2L-a-b)+p_A+c_B=2p_B
+\]
+
+Dividimos entre \(2\):
+
+\[
+p_B=\frac{t(2L-a-b)+p_A+c_B}{2}
+\]
+
+Esta es la función de reacción de B:
+
+\[
+R_B:\quad p_B=\frac{t(2L-a-b)+p_A+c_B}{2}
+\]
+
+---
+
+# 8. Fórmulas generales del equilibrio de Nash ⭐
+
+Las dos funciones de reacción son:
+
+\[
+p_A=\frac{t(a+b)+p_B+c_A}{2}
+\]
+
+\[
+p_B=\frac{t(2L-a-b)+p_A+c_B}{2}
+\]
+
+Estas fórmulas se resuelven juntas.
+
+Para abreviar, definimos:
+
+\[
+A=t(a+b)+c_A
+\]
+
+\[
+B=t(2L-a-b)+c_B
+\]
+
+Entonces:
+
+\[
+p_A=\frac{A+p_B}{2}
+\]
+
+\[
+p_B=\frac{B+p_A}{2}
+\]
+
+Multiplicamos por \(2\):
+
+\[
+2p_A=A+p_B
+\]
+
+\[
+2p_B=B+p_A
+\]
+
+Reordenamos:
+
+\[
+2p_A-p_B=A
+\]
+
+\[
+-p_A+2p_B=B
+\]
+
+La solución es:
+
+\[
+p_A^*=\frac{2A+B}{3}
+\]
+
+\[
+p_B^*=\frac{A+2B}{3}
+\]
+
+Regresando a los términos originales:
+
+\[
+p_A^*=\frac{2[t(a+b)+c_A]+[t(2L-a-b)+c_B]}{3}
+\]
+
+\[
+p_B^*=\frac{[t(a+b)+c_A]+2[t(2L-a-b)+c_B]}{3}
+\]
+
+---
+
+# Escenario 1: Caso base con simetría total 🟦🟦
+
+## Datos del problema
+
+\[
+L=100
+\]
+
+\[
+a=0
+\]
+
+\[
+b=100
+\]
+
+\[
+c_A=10
+\]
+
+\[
+c_B=10
+\]
+
+\[
+t=2
+\]
+
+Las empresas están en los extremos de la calle. A está en:
+
+\[
+x=0
+\]
+
+B está en:
+
+\[
+x=100
+\]
+
+Los costos marginales son iguales:
+
+\[
+c_A=c_B=10
+\]
+
+---
+
+## Paso 1: consumidor indiferente
+
+Usamos:
+
+\[
+x^*=\frac{a+b}{2}+\frac{p_B-p_A}{2t}
+\]
+
+Sustituimos:
+
+\[
+x^*=\frac{0+100}{2}+\frac{p_B-p_A}{2(2)}
+\]
+
+Primero resolvemos el promedio de ubicaciones:
+
+\[
+\frac{0+100}{2}=\frac{100}{2}=50
+\]
+
+Ahora resolvemos el denominador:
+
+\[
+2(2)=4
+\]
+
+Entonces:
+
+\[
+x^*=50+\frac{p_B-p_A}{4}
+\]
+
+---
+
+## Paso 2: demandas
+
+La demanda de A es:
+
+\[
+q_A=x^*
+\]
+
+Por lo tanto:
+
+\[
+q_A=50+\frac{p_B-p_A}{4}
+\]
+
+La demanda de B es:
+
+\[
+q_B=100-x^*
+\]
+
+Sustituimos \(x^*\):
+
+\[
+q_B=100-\left(50+\frac{p_B-p_A}{4}\right)
+\]
+
+Distribuimos el signo negativo:
+
+\[
+q_B=100-50-\frac{p_B-p_A}{4}
+\]
+
+Restamos:
+
+\[
+q_B=50-\frac{p_B-p_A}{4}
+\]
+
+También se puede escribir como:
+
+\[
+q_B=50+\frac{p_A-p_B}{4}
+\]
+
+---
+
+## Paso 3: función de reacción de A
+
+Usamos:
+
+\[
+p_A=\frac{t(a+b)+p_B+c_A}{2}
+\]
+
+Sustituimos:
+
+\[
+p_A=\frac{2(0+100)+p_B+10}{2}
+\]
+
+Sumamos dentro del paréntesis:
+
+\[
+0+100=100
+\]
+
+Multiplicamos:
+
+\[
+2(100)=200
+\]
+
+Entonces:
+
+\[
+p_A=\frac{200+p_B+10}{2}
+\]
+
+Sumamos:
+
+\[
+200+10=210
+\]
+
+Por lo tanto:
+
+\[
+p_A=\frac{210+p_B}{2}
+\]
+
+Separando:
+
+\[
+p_A=105+\frac{p_B}{2}
+\]
+
+---
+
+## Paso 4: función de reacción de B
+
+Usamos:
+
+\[
+p_B=\frac{t(2L-a-b)+p_A+c_B}{2}
+\]
+
+Sustituimos:
+
+\[
+p_B=\frac{2(2(100)-0-100)+p_A+10}{2}
+\]
+
+Primero:
+
+\[
+2(100)=200
+\]
+
+Luego:
+
+\[
+200-0-100=100
+\]
+
+Multiplicamos por \(t=2\):
+
+\[
+2(100)=200
+\]
+
+Entonces:
+
+\[
+p_B=\frac{200+p_A+10}{2}
+\]
+
+Sumamos:
+
+\[
+200+10=210
+\]
+
+Por lo tanto:
+
+\[
+p_B=\frac{210+p_A}{2}
+\]
+
+Separando:
+
+\[
+p_B=105+\frac{p_A}{2}
+\]
+
+---
+
+## Paso 5: resolver precios de equilibrio
+
+Tenemos:
+
+\[
+p_A=105+\frac{p_B}{2}
+\]
+
+\[
+p_B=105+\frac{p_A}{2}
+\]
+
+Sustituimos la segunda ecuación en la primera:
+
+\[
+p_A=105+\frac{1}{2}\left(105+\frac{p_A}{2}\right)
+\]
+
+Distribuimos \(\frac{1}{2}\):
+
+\[
+p_A=105+\frac{105}{2}+\frac{p_A}{4}
+\]
+
+Calculamos:
+
+\[
+\frac{105}{2}=52.5
+\]
+
+Entonces:
+
+\[
+p_A=105+52.5+\frac{p_A}{4}
+\]
+
+Sumamos:
+
+\[
+105+52.5=157.5
+\]
+
+Por lo tanto:
+
+\[
+p_A=157.5+\frac{p_A}{4}
+\]
+
+Pasamos \(\frac{p_A}{4}\) al lado izquierdo:
+
+\[
+p_A-\frac{p_A}{4}=157.5
+\]
+
+Escribimos \(p_A\) como \(\frac{4p_A}{4}\):
+
+\[
+\frac{4p_A}{4}-\frac{p_A}{4}=157.5
+\]
+
+Restamos:
+
+\[
+\frac{3p_A}{4}=157.5
+\]
+
+Multiplicamos por \(4\):
+
+\[
+3p_A=630
+\]
+
+Dividimos entre \(3\):
+
+\[
+p_A^*=210
+\]
+
+Ahora sustituimos en la reacción de B:
+
+\[
+p_B=105+\frac{210}{2}
+\]
+
+Calculamos:
+
+\[
+\frac{210}{2}=105
+\]
+
+Entonces:
+
+\[
+p_B=105+105=210
+\]
+
+Por lo tanto:
+
+\[
+p_B^*=210
+\]
+
+---
+
+## Paso 6: consumidor indiferente en equilibrio
+
+Usamos:
+
+\[
+x^*=50+\frac{p_B-p_A}{4}
+\]
+
+Sustituimos:
+
+\[
+x^*=50+\frac{210-210}{4}
+\]
+
+Restamos:
+
+\[
+210-210=0
+\]
+
+Entonces:
+
+\[
+x^*=50+\frac{0}{4}
+\]
+
+\[
+x^*=50
+\]
+
+---
+
+## Paso 7: cantidades
+
+\[
+q_A=x^*=50
+\]
+
+\[
+q_B=100-x^*=100-50=50
+\]
+
+---
+
+## Paso 8: ganancias
+
+La ganancia de A es:
+
+\[
+\pi_A=(p_A-c_A)q_A
+\]
+
+Sustituimos:
+
+\[
+\pi_A=(210-10)(50)
+\]
+
+Restamos:
+
+\[
+210-10=200
+\]
+
+Multiplicamos:
+
+\[
+200(50)=10000
+\]
+
+Entonces:
+
+\[
+\pi_A^*=10000
+\]
+
+La ganancia de B es:
+
+\[
+\pi_B=(p_B-c_B)q_B
+\]
+
+Sustituimos:
+
+\[
+\pi_B=(210-10)(50)
+\]
+
+Restamos:
+
+\[
+210-10=200
+\]
+
+Multiplicamos:
+
+\[
+200(50)=10000
+\]
+
+Entonces:
+
+\[
+\pi_B^*=10000
+\]
+
+---
+
+## Interpretación del escenario 1 🧠
+
+Como todo es simétrico, ambas empresas cobran el mismo precio:
+
+\[
+p_A^*=p_B^*=210
+\]
+
+También venden la misma cantidad:
+
+\[
+q_A=q_B=50
+\]
+
+Y obtienen la misma ganancia:
+
+\[
+\pi_A=\pi_B=10000
+\]
+
+El consumidor indiferente queda exactamente a la mitad de la calle:
+
+\[
+x^*=50
+\]
+
+Interpretación sencilla: si las empresas están en extremos opuestos, tienen el mismo costo y cobran lo mismo, el consumidor de en medio es indiferente. Quienes viven más cerca de A compran en A. Quienes viven más cerca de B compran en B.
+
+---
+
+# Escenario 2: Asimetría en costos 🟩🟥
+
+## Datos del problema
+
+\[
+L=60
+\]
+
+\[
+a=0
+\]
+
+\[
+b=60
+\]
+
+\[
+c_A=20
+\]
+
+\[
+c_B=32
+\]
+
+\[
+t=1
+\]
+
+La empresa A es más eficiente porque su costo marginal es menor:
+
+\[
+c_A<c_B
+\]
+
+Es decir:
+
+\[
+20<32
+\]
+
+---
+
+## Paso 1: consumidor indiferente
+
+Usamos:
+
+\[
+x^*=\frac{a+b}{2}+\frac{p_B-p_A}{2t}
+\]
+
+Sustituimos:
+
+\[
+x^*=\frac{0+60}{2}+\frac{p_B-p_A}{2(1)}
+\]
+
+Primero:
+
+\[
+\frac{0+60}{2}=\frac{60}{2}=30
+\]
+
+Luego:
+
+\[
+2(1)=2
+\]
+
+Entonces:
+
+\[
+x^*=30+\frac{p_B-p_A}{2}
+\]
+
+---
+
+## Paso 2: demandas
+
+La demanda de A es:
+
+\[
+q_A=x^*
+\]
+
+Entonces:
+
+\[
+q_A=30+\frac{p_B-p_A}{2}
+\]
+
+La demanda de B es:
+
+\[
+q_B=60-x^*
+\]
+
+Sustituimos:
+
+\[
+q_B=60-\left(30+\frac{p_B-p_A}{2}\right)
+\]
+
+Distribuimos el signo negativo:
+
+\[
+q_B=60-30-\frac{p_B-p_A}{2}
+\]
+
+Restamos:
+
+\[
+q_B=30-\frac{p_B-p_A}{2}
+\]
+
+También:
+
+\[
+q_B=30+\frac{p_A-p_B}{2}
+\]
+
+---
+
+## Paso 3: función de reacción de A
+
+Usamos:
+
+\[
+p_A=\frac{t(a+b)+p_B+c_A}{2}
+\]
+
+Sustituimos:
+
+\[
+p_A=\frac{1(0+60)+p_B+20}{2}
+\]
+
+Sumamos:
+
+\[
+0+60=60
+\]
+
+Multiplicamos:
+
+\[
+1(60)=60
+\]
+
+Entonces:
+
+\[
+p_A=\frac{60+p_B+20}{2}
+\]
+
+Sumamos:
+
+\[
+60+20=80
+\]
+
+Por lo tanto:
+
+\[
+p_A=\frac{80+p_B}{2}
+\]
+
+Separando:
+
+\[
+p_A=40+\frac{p_B}{2}
+\]
+
+---
+
+## Paso 4: función de reacción de B
+
+Usamos:
+
+\[
+p_B=\frac{t(2L-a-b)+p_A+c_B}{2}
+\]
+
+Sustituimos:
+
+\[
+p_B=\frac{1(2(60)-0-60)+p_A+32}{2}
+\]
+
+Primero:
+
+\[
+2(60)=120
+\]
+
+Luego:
+
+\[
+120-0-60=60
+\]
+
+Multiplicamos:
+
+\[
+1(60)=60
+\]
+
+Entonces:
+
+\[
+p_B=\frac{60+p_A+32}{2}
+\]
+
+Sumamos:
+
+\[
+60+32=92
+\]
+
+Por lo tanto:
+
+\[
+p_B=\frac{92+p_A}{2}
+\]
+
+Separando:
+
+\[
+p_B=46+\frac{p_A}{2}
+\]
+
+---
+
+## Paso 5: resolver precios de equilibrio
+
+Tenemos:
+
+\[
+p_A=40+\frac{p_B}{2}
+\]
+
+\[
+p_B=46+\frac{p_A}{2}
+\]
+
+Sustituimos la segunda ecuación en la primera:
+
+\[
+p_A=40+\frac{1}{2}\left(46+\frac{p_A}{2}\right)
+\]
+
+Distribuimos \(\frac{1}{2}\):
+
+\[
+p_A=40+\frac{46}{2}+\frac{p_A}{4}
+\]
+
+Calculamos:
+
+\[
+\frac{46}{2}=23
+\]
+
+Entonces:
+
+\[
+p_A=40+23+\frac{p_A}{4}
+\]
+
+Sumamos:
+
+\[
+40+23=63
+\]
+
+Por lo tanto:
+
+\[
+p_A=63+\frac{p_A}{4}
+\]
+
+Pasamos \(\frac{p_A}{4}\) al lado izquierdo:
+
+\[
+p_A-\frac{p_A}{4}=63
+\]
+
+Escribimos \(p_A\) como \(\frac{4p_A}{4}\):
+
+\[
+\frac{4p_A}{4}-\frac{p_A}{4}=63
+\]
+
+Restamos:
+
+\[
+\frac{3p_A}{4}=63
+\]
+
+Multiplicamos por \(4\):
+
+\[
+3p_A=252
+\]
+
+Dividimos entre \(3\):
+
+\[
+p_A^*=84
+\]
+
+Ahora sustituimos en la reacción de B:
+
+\[
+p_B=46+\frac{84}{2}
+\]
+
+Calculamos:
+
+\[
+\frac{84}{2}=42
+\]
+
+Entonces:
+
+\[
+p_B=46+42=88
+\]
+
+Por lo tanto:
+
+\[
+p_B^*=88
+\]
+
+---
+
+## Paso 6: consumidor indiferente en equilibrio
+
+Usamos:
+
+\[
+x^*=30+\frac{p_B-p_A}{2}
+\]
+
+Sustituimos:
+
+\[
+x^*=30+\frac{88-84}{2}
+\]
+
+Restamos:
+
+\[
+88-84=4
+\]
+
+Entonces:
+
+\[
+x^*=30+\frac{4}{2}
+\]
+
+Dividimos:
+
+\[
+\frac{4}{2}=2
+\]
+
+Por lo tanto:
+
+\[
+x^*=30+2=32
+\]
+
+---
+
+## Paso 7: cantidades
+
+La empresa A vende:
+
+\[
+q_A=x^*=32
+\]
+
+La empresa B vende:
+
+\[
+q_B=60-x^*
+\]
+
+Sustituimos:
+
+\[
+q_B=60-32=28
+\]
+
+---
+
+## Paso 8: ganancias
+
+La ganancia de A es:
+
+\[
+\pi_A=(p_A-c_A)q_A
+\]
+
+Sustituimos:
+
+\[
+\pi_A=(84-20)(32)
+\]
+
+Restamos:
+
+\[
+84-20=64
+\]
+
+Multiplicamos:
+
+\[
+64(32)=2048
+\]
+
+Entonces:
+
+\[
+\pi_A^*=2048
+\]
+
+La ganancia de B es:
+
+\[
+\pi_B=(p_B-c_B)q_B
+\]
+
+Sustituimos:
+
+\[
+\pi_B=(88-32)(28)
+\]
+
+Restamos:
+
+\[
+88-32=56
+\]
+
+Multiplicamos:
+
+\[
+56(28)=1568
+\]
+
+Entonces:
+
+\[
+\pi_B^*=1568
+\]
+
+---
+
+## Paso 9: verificación del consumidor indiferente ✅
+
+En el punto:
+
+\[
+x^*=32
+\]
+
+El costo total de comprar en A es:
+
+\[
+p_A+t(x-a)
+\]
+
+Sustituimos:
+
+\[
+84+1(32-0)
+\]
+
+Restamos:
+
+\[
+32-0=32
+\]
+
+Entonces:
+
+\[
+84+32=116
+\]
+
+El costo total de comprar en B es:
+
+\[
+p_B+t(b-x)
+\]
+
+Sustituimos:
+
+\[
+88+1(60-32)
+\]
+
+Restamos:
+
+\[
+60-32=28
+\]
+
+Entonces:
+
+\[
+88+28=116
+\]
+
+Ambos costos son iguales:
+
+\[
+116=116
+\]
+
+Por eso el consumidor en \(x=32\) es indiferente.
+
+---
+
+## Interpretación del escenario 2 🧠
+
+La empresa A tiene una ventaja tecnológica porque produce más barato:
+
+\[
+c_A=20<c_B=32
+\]
+
+Por eso puede cobrar un precio menor:
+
+\[
+p_A^*=84<p_B^*=88
+\]
+
+Aunque A cobra menos, gana más mercado:
+
+\[
+q_A=32>q_B=28
+\]
+
+También gana más dinero:
+
+\[
+\pi_A=2048>\pi_B=1568
+\]
+
+La parte interesante es que el consumidor indiferente no queda en la mitad de la calle. La mitad sería:
+
+\[
+30
+\]
+
+pero el consumidor indiferente queda en:
+
+\[
+32
+\]
+
+Eso significa que A “empuja” la frontera de mercado hacia el territorio de B. En palabras simples: algunos consumidores que están más cerca de B compran en A porque A es más barata.
+
+Ejemplo de vida real: si una taquería produce más barato, puede cobrar menos. Aunque esté un poco más lejos, algunas personas caminarán más porque el precio compensa el traslado.
+
+---
+
+# Escenario 3: Ubicaciones interiores y agrupamiento espacial 🟨🟨
+
+## Datos del problema
+
+\[
+L=100
+\]
+
+\[
+a=20
+\]
+
+\[
+b=80
+\]
+
+\[
+c_A=0
+\]
+
+\[
+c_B=0
+\]
+
+\[
+t=1
+\]
+
+Ahora las empresas no están en los extremos. La empresa A está en:
+
+\[
+x=20
+\]
+
+La empresa B está en:
+
+\[
+x=80
+\]
+
+Ambas tienen el mismo costo marginal:
+
+\[
+c_A=c_B=0
+\]
+
+---
+
+## Paso 1: consumidor indiferente
+
+Usamos:
+
+\[
+x^*=\frac{a+b}{2}+\frac{p_B-p_A}{2t}
+\]
+
+Sustituimos:
+
+\[
+x^*=\frac{20+80}{2}+\frac{p_B-p_A}{2(1)}
+\]
+
+Sumamos:
+
+\[
+20+80=100
+\]
+
+Dividimos:
+
+\[
+\frac{100}{2}=50
+\]
+
+Y:
+
+\[
+2(1)=2
+\]
+
+Entonces:
+
+\[
+x^*=50+\frac{p_B-p_A}{2}
+\]
+
+---
+
+## Paso 2: demandas
+
+La demanda de A es:
+
+\[
+q_A=x^*
+\]
+
+Entonces:
+
+\[
+q_A=50+\frac{p_B-p_A}{2}
+\]
+
+La demanda de B es:
+
+\[
+q_B=100-x^*
+\]
+
+Sustituimos:
+
+\[
+q_B=100-\left(50+\frac{p_B-p_A}{2}\right)
+\]
+
+Distribuimos el signo negativo:
+
+\[
+q_B=100-50-\frac{p_B-p_A}{2}
+\]
+
+Restamos:
+
+\[
+q_B=50-\frac{p_B-p_A}{2}
+\]
+
+También:
+
+\[
+q_B=50+\frac{p_A-p_B}{2}
+\]
+
+---
+
+## Paso 3: función de reacción de A
+
+Usamos:
+
+\[
+p_A=\frac{t(a+b)+p_B+c_A}{2}
+\]
+
+Sustituimos:
+
+\[
+p_A=\frac{1(20+80)+p_B+0}{2}
+\]
+
+Sumamos:
+
+\[
+20+80=100
+\]
+
+Multiplicamos:
+
+\[
+1(100)=100
+\]
+
+Entonces:
+
+\[
+p_A=\frac{100+p_B+0}{2}
+\]
+
+Quitamos el \(0\):
+
+\[
+p_A=\frac{100+p_B}{2}
+\]
+
+Separando:
+
+\[
+p_A=50+\frac{p_B}{2}
+\]
+
+---
+
+## Paso 4: función de reacción de B
+
+Usamos:
+
+\[
+p_B=\frac{t(2L-a-b)+p_A+c_B}{2}
+\]
+
+Sustituimos:
+
+\[
+p_B=\frac{1(2(100)-20-80)+p_A+0}{2}
+\]
+
+Primero:
+
+\[
+2(100)=200
+\]
+
+Luego:
+
+\[
+200-20-80=100
+\]
+
+Multiplicamos:
+
+\[
+1(100)=100
+\]
+
+Entonces:
+
+\[
+p_B=\frac{100+p_A+0}{2}
+\]
+
+Quitamos el \(0\):
+
+\[
+p_B=\frac{100+p_A}{2}
+\]
+
+Separando:
+
+\[
+p_B=50+\frac{p_A}{2}
+\]
+
+---
+
+## Paso 5: resolver precios de equilibrio
+
+Tenemos:
+
+\[
+p_A=50+\frac{p_B}{2}
+\]
+
+\[
+p_B=50+\frac{p_A}{2}
+\]
+
+Sustituimos la segunda ecuación en la primera:
+
+\[
+p_A=50+\frac{1}{2}\left(50+\frac{p_A}{2}\right)
+\]
+
+Distribuimos \(\frac{1}{2}\):
+
+\[
+p_A=50+\frac{50}{2}+\frac{p_A}{4}
+\]
+
+Calculamos:
+
+\[
+\frac{50}{2}=25
+\]
+
+Entonces:
+
+\[
+p_A=50+25+\frac{p_A}{4}
+\]
+
+Sumamos:
+
+\[
+50+25=75
+\]
+
+Por lo tanto:
+
+\[
+p_A=75+\frac{p_A}{4}
+\]
+
+Pasamos \(\frac{p_A}{4}\) al lado izquierdo:
+
+\[
+p_A-\frac{p_A}{4}=75
+\]
+
+Escribimos \(p_A\) como \(\frac{4p_A}{4}\):
+
+\[
+\frac{4p_A}{4}-\frac{p_A}{4}=75
+\]
+
+Restamos:
+
+\[
+\frac{3p_A}{4}=75
+\]
+
+Multiplicamos por \(4\):
+
+\[
+3p_A=300
+\]
+
+Dividimos entre \(3\):
+
+\[
+p_A^*=100
+\]
+
+Ahora sustituimos en la reacción de B:
+
+\[
+p_B=50+\frac{100}{2}
+\]
+
+Calculamos:
+
+\[
+\frac{100}{2}=50
+\]
+
+Entonces:
+
+\[
+p_B=50+50=100
+\]
+
+Por lo tanto:
+
+\[
+p_B^*=100
+\]
+
+---
+
+## Paso 6: consumidor indiferente en equilibrio
+
+Usamos:
+
+\[
+x^*=50+\frac{p_B-p_A}{2}
+\]
+
+Sustituimos:
+
+\[
+x^*=50+\frac{100-100}{2}
+\]
+
+Restamos:
+
+\[
+100-100=0
+\]
+
+Entonces:
+
+\[
+x^*=50+\frac{0}{2}
+\]
+
+\[
+x^*=50
+\]
+
+---
+
+## Paso 7: cantidades
+
+La empresa A vende:
+
+\[
+q_A=x^*=50
+\]
+
+La empresa B vende:
+
+\[
+q_B=100-x^*
+\]
+
+Sustituimos:
+
+\[
+q_B=100-50=50
+\]
+
+---
+
+## Paso 8: ganancias
+
+La ganancia de A es:
+
+\[
+\pi_A=(p_A-c_A)q_A
+\]
+
+Sustituimos:
+
+\[
+\pi_A=(100-0)(50)
+\]
+
+Restamos:
+
+\[
+100-0=100
+\]
+
+Multiplicamos:
+
+\[
+100(50)=5000
+\]
+
+Entonces:
+
+\[
+\pi_A^*=5000
+\]
+
+La ganancia de B es:
+
+\[
+\pi_B=(p_B-c_B)q_B
+\]
+
+Sustituimos:
+
+\[
+\pi_B=(100-0)(50)
+\]
+
+Restamos:
+
+\[
+100-0=100
+\]
+
+Multiplicamos:
+
+\[
+100(50)=5000
+\]
+
+Entonces:
+
+\[
+\pi_B^*=5000
+\]
+
+---
+
+## Paso 9: verificación del consumidor indiferente ✅
+
+En el punto:
+
+\[
+x^*=50
+\]
+
+El costo total de comprar en A es:
+
+\[
+p_A+t(x-a)
+\]
+
+Sustituimos:
+
+\[
+100+1(50-20)
+\]
+
+Restamos:
+
+\[
+50-20=30
+\]
+
+Entonces:
+
+\[
+100+30=130
+\]
+
+El costo total de comprar en B es:
+
+\[
+p_B+t(b-x)
+\]
+
+Sustituimos:
+
+\[
+100+1(80-50)
+\]
+
+Restamos:
+
+\[
+80-50=30
+\]
+
+Entonces:
+
+\[
+100+30=130
+\]
+
+Ambos costos son iguales:
+
+\[
+130=130
+\]
+
+Por eso el consumidor en \(x=50\) es indiferente.
+
+---
+
+## Interpretación del escenario 3 🧠
+
+Aunque las empresas no están en los extremos, siguen siendo simétricas respecto al centro de la calle.
+
+La empresa A está en:
+
+\[
+x=20
+\]
+
+La empresa B está en:
+
+\[
+x=80
+\]
+
+El centro de la calle es:
+
+\[
+x=50
+\]
+
+Como ambas empresas tienen el mismo costo:
+
+\[
+c_A=c_B=0
+\]
+
+y cobran el mismo precio:
+
+\[
+p_A^*=p_B^*=100
+\]
+
+el mercado se divide en partes iguales:
+
+\[
+q_A=q_B=50
+\]
+
+La interpretación es simple: la ubicación interior no rompe la simetría porque ambas empresas están colocadas de manera equilibrada. A atiende principalmente la zona izquierda y B la zona derecha.
+
+En la vida real, esto se parece a dos negocios dentro de una avenida que no están en las esquinas, pero sí están colocados de forma balanceada. Ninguno tiene ventaja clara, así que el mercado queda repartido a la mitad.
+
+---
+
+# 9. Comparación de los tres escenarios 📌
+
+En el escenario simétrico, ambas empresas son iguales en ubicación relativa y costos. Por eso:
+
+\[
+p_A=p_B
+\]
+
+\[
+q_A=q_B
+\]
+
+\[
+\pi_A=\pi_B
+\]
+
+En el escenario con ventaja tecnológica, la empresa A tiene menor costo:
+
+\[
+c_A<c_B
+\]
+
+Eso le permite cobrar menos:
+
+\[
+p_A<p_B
+\]
+
+atraer más consumidores:
+
+\[
+q_A>q_B
+\]
+
+y obtener más ganancias:
+
+\[
+\pi_A>\pi_B
+\]
+
+En el escenario con ubicaciones interiores, la simetría vuelve a dominar porque las empresas están equilibradas alrededor del centro:
+
+\[
+a=20
+\]
+
+\[
+b=80
+\]
+
+\[
+x^*=50
+\]
+
+Entonces el mercado se reparte igual.
+
+---
+
+# 10. Resultados finales del modelo lineal ✅
+
+## Escenario 1
+
+\[
+p_A^*=210
+\]
+
+\[
+p_B^*=210
+\]
+
+\[
+x^*=50
+\]
+
+\[
+q_A=50
+\]
+
+\[
+q_B=50
+\]
+
+\[
+\pi_A=10000
+\]
+
+\[
+\pi_B=10000
+\]
+
+## Escenario 2
+
+\[
+p_A^*=84
+\]
+
+\[
+p_B^*=88
+\]
+
+\[
+x^*=32
+\]
+
+\[
+q_A=32
+\]
+
+\[
+q_B=28
+\]
+
+\[
+\pi_A=2048
+\]
+
+\[
+\pi_B=1568
+\]
+
+## Escenario 3
+
+\[
+p_A^*=100
+\]
+
+\[
+p_B^*=100
+\]
+
+\[
+x^*=50
+\]
+
+\[
+q_A=50
+\]
+
+\[
+q_B=50
+\]
+
+\[
+\pi_A=5000
+\]
+
+\[
+\pi_B=5000
+\]
+
+---
+
+# 11. Anexo: si el profesor usa la versión cuadrática de tus apuntes 🧮
+
+En tus notas aparece:
+
+\[
+U_i=S-p_i-td_i^2
+\]
+
+Eso implica que el costo de transporte es:
+
+\[
+td^2
+\]
+
+En ese caso, el consumidor indiferente se obtiene igualando costos completos:
+
+\[
+p_A+t(x-a)^2=p_B+t(b-x)^2
+\]
+
+Desarrollamos:
+
+\[
+p_A+t(x^2-2ax+a^2)=p_B+t(b^2-2bx+x^2)
+\]
+
+Distribuimos:
+
+\[
+p_A+tx^2-2tax+ta^2=p_B+tb^2-2tbx+tx^2
+\]
+
+Cancelamos \(tx^2\) en ambos lados:
+
+\[
+p_A-2tax+ta^2=p_B+tb^2-2tbx
+\]
+
+Pasamos los términos con \(x\) al lado izquierdo:
+
+\[
+2tbx-2tax=p_B-p_A+tb^2-ta^2
+\]
+
+Factorizamos:
+
+\[
+2t(b-a)x=p_B-p_A+t(b-a)(a+b)
+\]
+
+Usamos que:
+
+\[
+b^2-a^2=(b-a)(a+b)
+\]
+
+Entonces:
+
+\[
+2t(b-a)x=p_B-p_A+t(b-a)(a+b)
+\]
+
+Dividimos entre \(2t(b-a)\):
+
+\[
+x^*=\frac{p_B-p_A}{2t(b-a)}+\frac{a+b}{2}
+\]
+
+La fórmula se parece a la lineal, pero ahora el denominador tiene:
+
+\[
+2t(b-a)
+\]
+
+Esto significa que la distancia entre empresas afecta directamente la sensibilidad de la demanda.
+
+---
+
+## Resultados cuadráticos usando las distancias reales de la tarea
+
+### Escenario 1 cuadrático
+
+\[
+L=100
+\]
+
+\[
+a=0
+\]
+
+\[
+b=100
+\]
+
+\[
+t=2
+\]
+
+\[
+c_A=c_B=10
+\]
+
+Resultado:
+
+\[
+p_A^*=20010
+\]
+
+\[
+p_B^*=20010
+\]
+
+\[
+x^*=50
+\]
+
+\[
+q_A=50
+\]
+
+\[
+q_B=50
+\]
+
+\[
+\pi_A=1000000
+\]
+
+\[
+\pi_B=1000000
+\]
+
+### Escenario 2 cuadrático
+
+\[
+L=60
+\]
+
+\[
+a=0
+\]
+
+\[
+b=60
+\]
+
+\[
+t=1
+\]
+
+\[
+c_A=20
+\]
+
+\[
+c_B=32
+\]
+
+Resultado:
+
+\[
+p_A^*=3624
+\]
+
+\[
+p_B^*=3628
+\]
+
+\[
+x^*=30.0333
+\]
+
+\[
+q_A=30.0333
+\]
+
+\[
+q_B=29.9667
+\]
+
+\[
+\pi_A\approx108240.13
+\]
+
+\[
+\pi_B\approx107760.13
+\]
+
+### Escenario 3 cuadrático
+
+\[
+L=100
+\]
+
+\[
+a=20
+\]
+
+\[
+b=80
+\]
+
+\[
+t=1
+\]
+
+\[
+c_A=c_B=0
+\]
+
+Resultado:
+
+\[
+p_A^*=6000
+\]
+
+\[
+p_B^*=6000
+\]
+
+\[
+x^*=50
+\]
+
+\[
+q_A=50
+\]
+
+\[
+q_B=50
+\]
+
+\[
+\pi_A=300000
+\]
+
+\[
+\pi_B=300000
+\]
+
+---
+
+## Comentario sobre la versión cuadrática ⚠️
+
+Los precios cuadráticos salen muy grandes porque se están usando metros y luego se elevan al cuadrado.
+
+Por ejemplo:
+
+\[
+100^2=10000
+\]
+
+Entonces el costo de transporte crece muchísimo.
+
+Si el profesor trabaja con una calle normalizada de \(0\) a \(1\), como en tus apuntes, entonces las posiciones deben convertirse a proporciones:
+
+\[
+x_{\text{normalizado}}=\frac{x}{L}
+\]
+
+Por ejemplo, en el escenario \(3\):
+
+\[
+\frac{20}{100}=0.2
+\]
+
+\[
+\frac{80}{100}=0.8
+\]
+
+Pero no se debe normalizar la distancia sin aclarar qué pasa con \(t\). El parámetro \(t\) depende de la unidad de medida. Por eso, para entregar la tarea, usa una sola convención: costo lineal \(td\) o costo cuadrático \(td^2\), pero no ambos al mismo tiempo.
+
+---
+
+# 12. Referencia del pizarrón: caso con tres empresas 🏪🏪🏪
+
+En tus fotos también aparece un ejemplo con tres empresas:
+
+\[
+F_1=0
+\]
+
+\[
+F_2=0.5
+\]
+
+\[
+F_3=1
+\]
+
+\[
+c_1=c_2=c_3=0
+\]
+
+\[
+t=60
+\]
+
+Aquí se usa la versión cuadrática:
+
+\[
+U_i=S-p_i-td_i^2
+\]
+
+Hay dos consumidores indiferentes:
+
+\[
+x=\text{indiferente entre }F_1\text{ y }F_2
+\]
+
+\[
+y=\text{indiferente entre }F_2\text{ y }F_3
+\]
+
+---
+
+## Consumidor indiferente entre \(F_1\) y \(F_2\)
+
+Igualamos costos:
+
+\[
+p_1+60x^2=p_2+60(x-0.5)^2
+\]
+
+Desarrollamos el cuadrado:
+
+\[
+(x-0.5)^2=x^2-x+0.25
+\]
+
+Sustituimos:
+
+\[
+p_1+60x^2=p_2+60(x^2-x+0.25)
+\]
+
+Distribuimos:
+
+\[
+p_1+60x^2=p_2+60x^2-60x+15
+\]
+
+Cancelamos \(60x^2\):
+
+\[
+p_1=p_2-60x+15
+\]
+
+Pasamos \(-60x\) al lado izquierdo:
+
+\[
+60x=15+p_2-p_1
+\]
+
+Dividimos entre \(60\):
+
+\[
+x=\frac{15+p_2-p_1}{60}
+\]
+
+Separamos:
+
+\[
+x=\frac{15}{60}+\frac{p_2-p_1}{60}
+\]
+
+Como:
+
+\[
+\frac{15}{60}=\frac{1}{4}
+\]
+
+Entonces:
+
+\[
+x=\frac{1}{4}+\frac{p_2-p_1}{60}
+\]
+
+Por lo tanto:
+
+\[
+q_1=x=\frac{1}{4}+\frac{p_2-p_1}{60}
+\]
+
+---
+
+## Consumidor indiferente entre \(F_2\) y \(F_3\)
+
+Igualamos costos:
+
+\[
+p_2+60(y-0.5)^2=p_3+60(y-1)^2
+\]
+
+Desarrollamos:
+
+\[
+(y-0.5)^2=y^2-y+0.25
+\]
+
+\[
+(y-1)^2=y^2-2y+1
+\]
+
+Sustituimos:
+
+\[
+p_2+60(y^2-y+0.25)=p_3+60(y^2-2y+1)
+\]
+
+Distribuimos:
+
+\[
+p_2+60y^2-60y+15=p_3+60y^2-120y+60
+\]
+
+Cancelamos \(60y^2\):
+
+\[
+p_2-60y+15=p_3-120y+60
+\]
+
+Pasamos los términos con \(y\) al lado izquierdo:
+
+\[
+120y-60y=60+p_3-p_2-15
+\]
+
+Restamos:
+
+\[
+60y=45+p_3-p_2
+\]
+
+Dividimos entre \(60\):
+
+\[
+y=\frac{45+p_3-p_2}{60}
+\]
+
+Separamos:
+
+\[
+y=\frac{45}{60}+\frac{p_3-p_2}{60}
+\]
+
+Como:
+
+\[
+\frac{45}{60}=\frac{3}{4}
+\]
+
+Entonces:
+
+\[
+y=\frac{3}{4}+\frac{p_3-p_2}{60}
+\]
+
+---
+
+## Demandas de las tres empresas
+
+La empresa \(1\) vende a los consumidores entre \(0\) y \(x\):
+
+\[
+q_1=x
+\]
+
+\[
+q_1=\frac{1}{4}+\frac{p_2-p_1}{60}
+\]
+
+La empresa \(2\) vende a los consumidores entre \(x\) y \(y\):
+
+\[
+q_2=y-x
+\]
+
+Sustituimos:
+
+\[
+q_2=\left(\frac{3}{4}+\frac{p_3-p_2}{60}\right)-\left(\frac{1}{4}+\frac{p_2-p_1}{60}\right)
+\]
+
+Distribuimos el signo negativo:
+
+\[
+q_2=\frac{3}{4}+\frac{p_3-p_2}{60}-\frac{1}{4}-\frac{p_2-p_1}{60}
+\]
+
+Restamos fracciones:
+
+\[
+\frac{3}{4}-\frac{1}{4}=\frac{2}{4}=\frac{1}{2}
+\]
+
+Ahora juntamos los términos de precios:
+
+\[
+\frac{p_3-p_2}{60}-\frac{p_2-p_1}{60}
+\]
+
+Como tienen el mismo denominador:
+
+\[
+\frac{p_3-p_2-p_2+p_1}{60}
+\]
+
+Sumamos términos semejantes:
+
+\[
+\frac{p_1+p_3-2p_2}{60}
+\]
+
+Entonces:
+
+\[
+q_2=\frac{1}{2}+\frac{p_1+p_3-2p_2}{60}
+\]
+
+La empresa \(3\) vende a los consumidores entre \(y\) y \(1\):
+
+\[
+q_3=1-y
+\]
+
+Sustituimos:
+
+\[
+q_3=1-\left(\frac{3}{4}+\frac{p_3-p_2}{60}\right)
+\]
+
+Distribuimos:
+
+\[
+q_3=1-\frac{3}{4}-\frac{p_3-p_2}{60}
+\]
+
+Restamos:
+
+\[
+1-\frac{3}{4}=\frac{1}{4}
+\]
+
+Entonces:
+
+\[
+q_3=\frac{1}{4}-\frac{p_3-p_2}{60}
+\]
+
+Equivalente a:
+
+\[
+q_3=\frac{1}{4}+\frac{p_2-p_3}{60}
+\]
+
+---
+
+## Equilibrio de precios con tres empresas
+
+Como los costos son cero:
+
+\[
+\pi_i=p_iq_i
+\]
+
+Las funciones de reacción que salen de maximizar ganancias son:
+
+\[
+p_1=\frac{15+p_2}{2}
+\]
+
+\[
+p_3=\frac{15+p_2}{2}
+\]
+
+\[
+p_2=\frac{30+p_1+p_3}{4}
+\]
+
+Por simetría:
+
+\[
+p_1=p_3
+\]
+
+Llamamos:
+
+\[
+p_1=p_3=p
+\]
+
+Entonces:
+
+\[
+p=\frac{15+p_2}{2}
+\]
+
+y:
+
+\[
+p_2=\frac{30+p+p}{4}
+\]
+
+Sumamos \(p+p\):
+
+\[
+p_2=\frac{30+2p}{4}
+\]
+
+Dividimos cada término entre \(4\):
+
+\[
+p_2=\frac{30}{4}+\frac{2p}{4}
+\]
+
+Simplificamos:
+
+\[
+p_2=7.5+\frac{p}{2}
+\]
+
+También:
+
+\[
+p=\frac{15+p_2}{2}
+\]
+
+Multiplicamos por \(2\):
+
+\[
+2p=15+p_2
+\]
+
+Sustituimos \(p_2=7.5+\frac{p}{2}\):
+
+\[
+2p=15+7.5+\frac{p}{2}
+\]
+
+Sumamos:
+
+\[
+15+7.5=22.5
+\]
+
+Entonces:
+
+\[
+2p=22.5+\frac{p}{2}
+\]
+
+Pasamos \(\frac{p}{2}\) al lado izquierdo:
+
+\[
+2p-\frac{p}{2}=22.5
+\]
+
+Escribimos \(2p\) como \(\frac{4p}{2}\):
+
+\[
+\frac{4p}{2}-\frac{p}{2}=22.5
+\]
+
+Restamos:
+
+\[
+\frac{3p}{2}=22.5
+\]
+
+Multiplicamos por \(2\):
+
+\[
+3p=45
+\]
+
+Dividimos entre \(3\):
+
+\[
+p=15
+\]
+
+Entonces:
+
+\[
+p_1^*=15
+\]
+
+\[
+p_3^*=15
+\]
+
+Y:
+
+\[
+p_2^*=7.5+\frac{15}{2}
+\]
+
+Calculamos:
+
+\[
+\frac{15}{2}=7.5
+\]
+
+Entonces:
+
+\[
+p_2^*=7.5+7.5=15
+\]
+
+Por lo tanto:
+
+\[
+p_1^*=p_2^*=p_3^*=15
+\]
+
+---
+
+## Cantidades del caso con tres empresas
+
+Sustituimos precios iguales en las demandas.
+
+Para \(q_1\):
+
+\[
+q_1=\frac{1}{4}+\frac{p_2-p_1}{60}
+\]
+
+Como:
+
+\[
+p_2-p_1=15-15=0
+\]
+
+Entonces:
+
+\[
+q_1=\frac{1}{4}
+\]
+
+Para \(q_2\):
+
+\[
+q_2=\frac{1}{2}+\frac{p_1+p_3-2p_2}{60}
+\]
+
+Sustituimos:
+
+\[
+q_2=\frac{1}{2}+\frac{15+15-2(15)}{60}
+\]
+
+Multiplicamos:
+
+\[
+2(15)=30
+\]
+
+Entonces:
+
+\[
+q_2=\frac{1}{2}+\frac{15+15-30}{60}
+\]
+
+Sumamos y restamos:
+
+\[
+15+15-30=0
+\]
+
+Por lo tanto:
+
+\[
+q_2=\frac{1}{2}
+\]
+
+Para \(q_3\):
+
+\[
+q_3=\frac{1}{4}+\frac{p_2-p_3}{60}
+\]
+
+Como:
+
+\[
+p_2-p_3=15-15=0
+\]
+
+Entonces:
+
+\[
+q_3=\frac{1}{4}
+\]
+
+---
+
+## Ganancias del caso con tres empresas
+
+\[
+\pi_1=p_1q_1
+\]
+
+\[
+\pi_1=15\left(\frac{1}{4}\right)=\frac{15}{4}=3.75
+\]
+
+\[
+\pi_2=p_2q_2
+\]
+
+\[
+\pi_2=15\left(\frac{1}{2}\right)=\frac{15}{2}=7.5
+\]
+
+\[
+\pi_3=p_3q_3
+\]
+
+\[
+\pi_3=15\left(\frac{1}{4}\right)=\frac{15}{4}=3.75
+\]
+
+Interpretación: las tres empresas cobran el mismo precio, pero la empresa del centro vende más porque está en una posición más atractiva. Su mercado natural cubre consumidores de ambos lados.
+
+\[
+q_2>q_1
+\]
+
+\[
+q_2>q_3
+\]
+
+Por eso:
+
+\[
+\pi_2>\pi_1
+\]
+
+\[
+\pi_2>\pi_3
+\]
+
+En palabras simples: estar en medio puede ser una ventaja porque se puede atraer consumidores desde ambos lados de la calle.
