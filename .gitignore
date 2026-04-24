@@ -3,6 +3,8 @@ dist/
 playwright-report/
 test-results/
 .vercel/
+.playwright-mcp/
+tmp/
 .DS_Store
 coverage/
 *.tsbuildinfo
@@ -18,8 +20,5 @@ scripts/*.d.ts
 src/**/*.d.ts
 !src/react-katex.d.ts
 !src/vite-env.d.ts
-public/generated/hotelling/*.png
-public/generated/hotelling/*.jpg
-public/generated/hotelling/*.webp
 
 .vercel

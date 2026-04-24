@@ -1,7 +1,7 @@
-import fs from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
-import OpenAI from "openai";
+import { spawn } from "node:child_process";
 import {
   HOTELLING_IMAGE_MODEL,
   HOTELLING_IMAGE_OUTPUT_DIR,
@@ -15,7 +15,11 @@ type CliOptions = {
   includeAll: boolean;
   force: boolean;
   dryRun: boolean;
+  concurrency: string;
 };
+
+const IMAGEGEN_CLI =
+  process.env.IMAGEGEN_CLI ?? "C:\\Users\\spart\\.codex\\skills\\imagegen\\scripts\\image_gen.py";
 
 function parseArgs(argv: string[]): CliOptions {
   const options: CliOptions = {
@@ -24,6 +28,7 @@ function parseArgs(argv: string[]): CliOptions {
     includeAll: false,
     force: false,
     dryRun: false,
+    concurrency: "2",
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -41,6 +46,16 @@ function parseArgs(argv: string[]): CliOptions {
 
     if (arg === "--dry-run") {
       options.dryRun = true;
+      continue;
+    }
+
+    if (arg === "--concurrency") {
+      const value = argv[index + 1];
+      if (!value) {
+        throw new Error("Falta el valor para --concurrency.");
+      }
+      options.concurrency = value;
+      index += 1;
       continue;
     }
 
@@ -78,22 +93,8 @@ function parseArgs(argv: string[]): CliOptions {
   return options;
 }
 
-async function exists(filePath: string) {
-  try {
-    await fs.access(filePath);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function main() {
-  const options = parseArgs(process.argv.slice(2));
-  const rootDir = process.cwd();
-  const outputDir = path.join(rootDir, HOTELLING_IMAGE_OUTPUT_DIR);
-  await fs.mkdir(outputDir, { recursive: true });
-
-  const selectedImages = imageManifest.filter((image) => {
+function selectImages(options: CliOptions) {
+  return imageManifest.filter((image) => {
     if (options.ids.size > 0) {
       return options.ids.has(image.id);
     }
@@ -108,52 +109,115 @@ async function main() {
 
     return image.status === "draft" || image.status === "approved";
   });
+}
+
+function buildPrompt(image: (typeof imageManifest)[number]) {
+  const primaryRequest = image.prompt.replace(whiteboardVisualDirection, "").trim();
+
+  return `
+Use case: infographic-diagram
+Asset type: imagen didáctica para una app web educativa de economía.
+Primary request: ${primaryRequest}
+Scene/background: pizarrón blanco limpio, superficie marfil clara, trazo de plumón visible y ordenado.
+Style/medium: apunte visual profesional, juvenil y académico; no caricatura infantil; no salón; no personas.
+Composition/framing: horizontal 1536x1024, lectura de izquierda a derecha, una idea central, flechas y círculos para guiar el procedimiento.
+Color palette: negro profundo #0B0B0B, azul noche #1C2A3A, dorado sobrio #C6A75E, rojo vino #6E1F28, verde y azul moderados para diferenciar pasos.
+Typography: títulos con apariencia editorial serif similar a Newsreader; etiquetas y notas con sans geométrica similar a Manrope; texto grande, limpio y muy legible.
+Text rules: máximo dos fórmulas y cinco etiquetas cortas; no inventar resultados; no llenar la imagen de derivaciones completas.
+Required visible notes: ${image.sketchLines.join(" | ")}.
+Constraints: debe explicar cómo resolver el paso con claridad; debe coincidir con el contenido matemático validado de la app; sin logotipos, sin firma, sin marca personal, sin watermark.
+Avoid: tipografía genérica tipo Arial, letras deformadas, texto pequeño, ruido visual, exceso de fórmulas, decoración sin función, errores en números o símbolos.
+`.trim();
+}
+
+async function runImagegenCli(args: string[]) {
+  await new Promise<void>((resolve, reject) => {
+    const child = spawn("python", [IMAGEGEN_CLI, ...args], {
+      cwd: process.cwd(),
+      env: process.env,
+      shell: false,
+      stdio: "inherit",
+    });
+
+    child.on("error", reject);
+    child.on("exit", (code) => {
+      if (code === 0) {
+        resolve();
+        return;
+      }
+      reject(new Error(`imagegen terminó con código ${code}.`));
+    });
+  });
+}
+
+async function main() {
+  const options = parseArgs(process.argv.slice(2));
+  const selectedImages = selectImages(options);
 
   if (!selectedImages.length) {
     throw new Error("No hay imágenes seleccionadas con los filtros actuales.");
   }
 
   if (!options.dryRun && !process.env.OPENAI_API_KEY) {
-    throw new Error("Falta OPENAI_API_KEY. Exporta tu clave antes de correr el script.");
+    throw new Error(
+      "Falta OPENAI_API_KEY. Configúrala localmente antes de generar imágenes reales con OpenAI Images.",
+    );
   }
 
-  const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-    organization: process.env.OPENAI_ORG,
-    project: process.env.OPENAI_PROJECT,
-  });
+  const tmpDir = path.join(process.cwd(), "tmp", "imagegen");
+  const batchPath = path.join(tmpDir, "hotelling-images.jsonl");
 
-  for (const image of selectedImages) {
-    const outputPath = path.join(outputDir, `${image.id}.png`);
-    const fileAlreadyExists = await exists(outputPath);
+  await mkdir(tmpDir, { recursive: true });
+  await mkdir(path.join(process.cwd(), HOTELLING_IMAGE_OUTPUT_DIR), { recursive: true });
 
-    if (fileAlreadyExists && !options.force) {
-      console.log(`[skip] ${image.id} ya existe. Usa --force para regenerarla.`);
-      continue;
-    }
-
-    if (options.dryRun) {
-      console.log(
-        `[dry-run] ${image.id} | status=${image.status} | size=${image.size} | quality=${image.quality}`,
-      );
-      continue;
-    }
-
-    const result = await client.images.generate({
+  const jobs = selectedImages.map((image) =>
+    JSON.stringify({
+      prompt: buildPrompt(image),
       model: HOTELLING_IMAGE_MODEL,
-      prompt: `${whiteboardVisualDirection}\n\n${image.prompt}`,
       size: image.size,
       quality: image.quality,
-    });
+      output_format: "png",
+      out: `${image.id}.png`,
+    }),
+  );
 
-    const base64Image = result.data[0]?.b64_json;
-    if (!base64Image) {
-      throw new Error(`La API no devolvió una imagen para ${image.id}.`);
-    }
+  await writeFile(batchPath, `${jobs.join("\n")}\n`, "utf8");
 
-    await fs.writeFile(outputPath, Buffer.from(base64Image, "base64"));
-    console.log(`[ok] ${image.id} -> ${outputPath}`);
+  const args = [
+    "generate-batch",
+    "--input",
+    batchPath,
+    "--out-dir",
+    HOTELLING_IMAGE_OUTPUT_DIR,
+    "--model",
+    HOTELLING_IMAGE_MODEL,
+    "--output-format",
+    "png",
+    "--concurrency",
+    options.concurrency,
+    "--no-augment",
+    "--fail-fast",
+  ];
+
+  if (options.force) {
+    args.push("--force");
   }
+
+  if (options.dryRun) {
+    args.push("--dry-run");
+  }
+
+  try {
+    await runImagegenCli(args);
+  } finally {
+    await rm(batchPath, { force: true });
+  }
+
+  console.log(
+    options.dryRun
+      ? "Dry-run completado. No se generaron imágenes reales."
+      : `Imágenes generadas en ${HOTELLING_IMAGE_OUTPUT_DIR}. Revisa cada PNG antes de cambiar su status a generated.`,
+  );
 }
 
 void main().catch((error) => {

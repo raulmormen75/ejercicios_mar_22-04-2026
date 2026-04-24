@@ -35,6 +35,7 @@ function FallbackSketch({ spec }: { spec: SectionImageSpec }) {
 export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
   const [imageReady, setImageReady] = useState(false);
   const [zoomOpen, setZoomOpen] = useState(false);
+  const imagePath = spec.status === "generated" && spec.generatedAssetPath ? spec.generatedAssetPath : spec.assetPath;
 
   return (
     <div className="summary-card">
@@ -50,9 +51,9 @@ export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
 
       <div className="summary-card__visual">
         {!imageReady ? <FallbackSketch spec={spec} /> : null}
-        {spec.assetPath ? (
+        {imagePath ? (
           <img
-            src={spec.assetPath}
+            src={imagePath}
             alt={spec.alt}
             className={`summary-card__image ${imageReady ? "" : "summary-card__image--hidden"}`}
             onLoad={() => setImageReady(true)}
@@ -88,9 +89,9 @@ export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
               Cerrar
             </button>
             {!imageReady ? <FallbackSketch spec={spec} /> : null}
-            {spec.assetPath ? (
+            {imagePath ? (
               <img
-                src={spec.assetPath}
+                src={imagePath}
                 alt={spec.alt}
                 className={`summary-card__image summary-card__image--large ${imageReady ? "" : "summary-card__image--hidden"}`}
                 onLoad={() => setImageReady(true)}

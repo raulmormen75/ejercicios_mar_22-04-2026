@@ -17,9 +17,22 @@ const manifestBySection = new Map(imageManifest.map((image) => [image.sectionId,
 
 for (const image of imageManifest) {
   assert(image.assetPath, `La imagen "${image.id}" no tiene assetPath.`);
+  assert(image.generatedAssetPath, `La imagen "${image.id}" no tiene generatedAssetPath.`);
 
   const assetPath = path.join(projectRoot, "public", image.assetPath.replace(/^\//, ""));
   assert(existsSync(assetPath), `No existe el asset estático para "${image.id}": ${image.assetPath}`);
+
+  if (image.status === "generated") {
+    const generatedAssetPath = path.join(
+      projectRoot,
+      "public",
+      image.generatedAssetPath.replace(/^\//, ""),
+    );
+    assert(
+      existsSync(generatedAssetPath),
+      `La imagen "${image.id}" está marcada como generated, pero no existe: ${image.generatedAssetPath}`,
+    );
+  }
 }
 
 for (const module of lessonModules) {

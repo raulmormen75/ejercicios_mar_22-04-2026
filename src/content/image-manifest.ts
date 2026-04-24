@@ -9,6 +9,7 @@ Estilo de apuntes en pizarrón blanco limpio.
 Trazos de plumón azul, negro, rojo, verde y naranja.
 Escritura manual legible, flechas, círculos, llaves y subrayados.
 Composición horizontal, clara y didáctica.
+Jerarquía tipográfica alineada con la app: títulos con apariencia serif editorial similar a Newsreader; etiquetas, notas y pasos con sans geométrica similar a Manrope.
 Sin personas, sin salón real, sin decoración extra, sin collages.
 Una sola idea visual por imagen, máximo dos fórmulas y hasta cinco etiquetas breves.
 El objetivo es aclarar cómo resolver la tarea: mostrar el paso, la fórmula mínima y el resultado que se debe recordar.
@@ -27,6 +28,7 @@ Mostrar una calle recta con empresa A y empresa B. Señalar un consumidor entre 
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.png`,
     sketchLines: [
       "1. ubica A, B y al consumidor",
       "2. suma precio + traslado",
@@ -47,6 +49,7 @@ Explicar visualmente que la ruta principal usa costo lineal td y no debe mezclar
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.png`,
     sketchLines: [
       "1. usar transporte lineal td",
       "2. no mezclar con td²",
@@ -67,6 +70,7 @@ Mostrar cómo el consumidor indiferente divide el mercado. Dibujar la calle, la 
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/consumidor-indiferente.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/consumidor-indiferente.png`,
     sketchLines: [
       "1. iguala costo A = costo B",
       "2. despeja x",
@@ -87,6 +91,7 @@ Explicar que qA sale de x* y qB sale de L - x*. Dibujar una calle segmentada y r
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/demandas-desde-xstar.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/demandas-desde-xstar.png`,
     sketchLines: [
       "1. mide desde 0 hasta x*",
       "2. qA = x*",
@@ -107,6 +112,7 @@ Mostrar dos rectas de reacción que se cruzan. Explicar que RA es el mejor preci
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/funciones-reaccion.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/funciones-reaccion.png`,
     sketchLines: [
       "1. RA: precio óptimo de A dado pB",
       "2. RB: precio óptimo de B dado pA",
@@ -127,6 +133,7 @@ Resumir el escenario 1 con simetría total. Dibujar extremos opuestos, x*=50, pr
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-1.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-1.png`,
     sketchLines: [
       "1. costos y posiciones iguales",
       "2. pA = pB = 210",
@@ -147,6 +154,7 @@ Resumir el escenario 2 con ventaja de costos para A. Dibujar la frontera movida 
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-2.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-2.png`,
     sketchLines: [
       "1. A tiene menor costo",
       "2. pA = 84 y pB = 88",
@@ -167,6 +175,7 @@ Resumir el escenario 3 con ubicaciones interiores simétricas. Dibujar a=20, b=8
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-3.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-3.png`,
     sketchLines: [
       "1. A está en 20 y B en 80",
       "2. siguen simétricas",
@@ -187,6 +196,7 @@ Comparar visualmente los tres escenarios. Un bloque para simetría, otro para ve
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/resumen-comparacion.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/resumen-comparacion.png`,
     sketchLines: [
       "1. si todo es igual: mitad y mitad",
       "2. si A cuesta menos: x* se mueve",
@@ -207,6 +217,7 @@ Mostrar que la versión cuadrática usa td^2 y cambia la sensibilidad de la dema
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/anexo-cuadratico.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/anexo-cuadratico.png`,
     sketchLines: [
       "1. aquí se usa td²",
       "2. cambia la sensibilidad",
@@ -227,6 +238,7 @@ Mostrar tres empresas sobre la calle y resaltar que la empresa central cubre mer
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/tres-empresas.svg`,
+    generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/tres-empresas.png`,
     sketchLines: [
       "1. ubica F1, F2 y F3",
       "2. F2 recibe demanda por ambos lados",

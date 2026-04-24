@@ -41,6 +41,7 @@ export interface SectionImageSpec {
   size: "1024x1024" | "1536x1024";
   status: "draft" | "approved" | "generated";
   assetPath?: string;
+  generatedAssetPath?: string;
   sketchLines: string[];
 }
 
