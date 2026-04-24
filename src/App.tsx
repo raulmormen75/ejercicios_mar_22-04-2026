@@ -11,11 +11,14 @@ import { imageManifest } from "./content/image-manifest";
 
 const sections = [
   { id: "hero", label: "Inicio" },
-  { id: "panorama", label: "Panorama" },
-  { id: "modelo-lineal", label: "Modelo lineal" },
+  { id: "panorama", label: "Mapa del problema" },
+  { id: "modelo-lineal", label: "Supuestos" },
+  { id: "consumidor-indiferente", label: "Frontera x*" },
+  { id: "demandas-ganancias", label: "Demandas" },
+  { id: "reacciones-equilibrio", label: "Equilibrio Nash" },
   { id: "escenarios", label: "Escenarios" },
-  { id: "resumen", label: "Resumen" },
-  { id: "extensiones", label: "Extensiones" },
+  { id: "resumen", label: "Resumen final" },
+  { id: "extensiones", label: "Anexos" },
 ];
 
 export default function App() {
@@ -38,10 +41,9 @@ export default function App() {
     <div className="app-shell">
       <header className="topbar">
         <a className="topbar__brand" href="#hero" aria-label="Volver al inicio">
-          <span className="brand-mark">R</span>
           <span>
-            <strong>Raul</strong>
-            <small>Asesoría económica aplicada</small>
+            <strong>Modelo de Hotelling</strong>
+            <small>Guía para resolver la tarea paso a paso</small>
           </span>
         </a>
         <nav aria-label="Navegación principal">
@@ -53,7 +55,6 @@ export default function App() {
             ))}
           </ul>
         </nav>
-        <div className="topbar__chip">Hotelling 2026</div>
       </header>
 
       <main className="main-content">

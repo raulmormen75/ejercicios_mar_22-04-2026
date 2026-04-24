@@ -11,6 +11,7 @@ Escritura manual legible, flechas, círculos, llaves y subrayados.
 Composición horizontal, clara y didáctica.
 Sin personas, sin salón real, sin decoración extra, sin collages.
 Una sola idea visual por imagen, máximo dos fórmulas y hasta cinco etiquetas breves.
+El objetivo es aclarar cómo resolver la tarea: mostrar el paso, la fórmula mínima y el resultado que se debe recordar.
 `.trim();
 
 export const imageManifest: SectionImageSpec[] = [
@@ -27,11 +28,11 @@ Mostrar una calle recta con empresa A y empresa B. Señalar un consumidor entre 
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.svg`,
     sketchLines: [
-      "calle recta",
-      "empresa A y empresa B",
-      "costo total = p + td",
-      "precio + traslado",
-      "la frontera depende del costo total",
+      "1. ubica A, B y al consumidor",
+      "2. suma precio + traslado",
+      "3. costo total = p + td",
+      "resultado: gana el menor costo total",
+      "la frontera sale al igualar costos",
     ],
   },
   {
@@ -47,11 +48,11 @@ Explicar visualmente que la ruta principal usa costo lineal td y no debe mezclar
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.svg`,
     sketchLines: [
-      "usar td",
-      "no mezclar con td²",
-      "a < b",
-      "mercado cubierto",
-      "consumidores uniformes",
+      "1. usar transporte lineal td",
+      "2. no mezclar con td²",
+      "3. a < b y consumidores uniformes",
+      "4. mercado cubierto",
+      "resultado: una sola convención",
     ],
   },
   {
@@ -67,11 +68,11 @@ Mostrar cómo el consumidor indiferente divide el mercado. Dibujar la calle, la 
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/consumidor-indiferente.svg`,
     sketchLines: [
-      "igualar costos",
-      "aparece x*",
-      "mercado de A",
-      "mercado de B",
-      "el precio mueve la frontera",
+      "1. iguala costo A = costo B",
+      "2. despeja x",
+      "3. aparece x*",
+      "izquierda: compra A",
+      "derecha: compra B",
     ],
   },
   {
@@ -87,11 +88,11 @@ Explicar que qA sale de x* y qB sale de L - x*. Dibujar una calle segmentada y r
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/demandas-desde-xstar.svg`,
     sketchLines: [
-      "qA = x*",
-      "qB = L - x*",
-      "frontera -> ventas",
-      "margen x cantidad",
-      "ganancia",
+      "1. mide desde 0 hasta x*",
+      "2. qA = x*",
+      "3. qB = L - x*",
+      "4. margen x cantidad",
+      "resultado: ganancia de cada empresa",
     ],
   },
   {
@@ -99,19 +100,19 @@ Explicar que qA sale de x* y qB sale de L - x*. Dibujar una calle segmentada y r
     sectionId: "reacciones-equilibrio",
     placement: "after-section",
     prompt: `${whiteboardVisualDirection}
-Mostrar dos rectas de reacción que se cruzan. Etiquetar solo RA, RB y equilibrio de Nash. Mantener el dibujo claro y con una sola idea visual.`,
-    alt: "Síntesis visual del cruce de funciones de reacción que produce el equilibrio de Nash.",
+Mostrar dos rectas de reacción que se cruzan. Explicar que RA es el mejor precio de A dado el precio de B, y que RB es el mejor precio de B dado el precio de A. Etiquetar RA, RB y equilibrio de Nash sin saturar el dibujo.`,
+    alt: "Síntesis visual del cruce de funciones de reacción: RA es la mejor respuesta de A y RB la mejor respuesta de B.",
     caption: "Cada empresa responde al precio de la otra y el equilibrio aparece donde ambas respuestas coinciden.",
     quality: "medium",
     size: "1536x1024",
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/funciones-reaccion.svg`,
     sketchLines: [
-      "RA",
-      "RB",
-      "cruce",
-      "ninguna quiere cambiar",
-      "equilibrio de Nash",
+      "1. RA: precio óptimo de A dado pB",
+      "2. RB: precio óptimo de B dado pA",
+      "3. cruza RA con RB",
+      "resultado: precios de Nash",
+      "nadie mejora cambiando solo",
     ],
   },
   {
@@ -127,11 +128,11 @@ Resumir el escenario 1 con simetría total. Dibujar extremos opuestos, x*=50, pr
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-1.svg`,
     sketchLines: [
-      "simetría total",
-      "pA = pB",
-      "x* = 50",
-      "qA = qB",
-      "misma ganancia",
+      "1. costos y posiciones iguales",
+      "2. pA = pB = 210",
+      "3. x* = 50",
+      "qA = qB = 50",
+      "resultado: πA = πB = 10000",
     ],
   },
   {
@@ -147,11 +148,11 @@ Resumir el escenario 2 con ventaja de costos para A. Dibujar la frontera movida 
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-2.svg`,
     sketchLines: [
-      "cA < cB",
-      "pA < pB",
-      "x* se mueve",
-      "qA > qB",
-      "A gana ventaja",
+      "1. A tiene menor costo",
+      "2. pA = 84 y pB = 88",
+      "3. x* = 32",
+      "qA = 32 y qB = 28",
+      "resultado: A gana más mercado",
     ],
   },
   {
@@ -167,11 +168,11 @@ Resumir el escenario 3 con ubicaciones interiores simétricas. Dibujar a=20, b=8
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-3.svg`,
     sketchLines: [
-      "a = 20",
-      "b = 80",
+      "1. A está en 20 y B en 80",
+      "2. siguen simétricas",
+      "3. pA = pB = 100",
       "x* = 50",
-      "simetría interior",
-      "mercado repartido",
+      "resultado: qA = qB = 50",
     ],
   },
   {
@@ -187,11 +188,11 @@ Comparar visualmente los tres escenarios. Un bloque para simetría, otro para ve
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/resumen-comparacion.svg`,
     sketchLines: [
-      "escenario 1 = simétrico",
-      "escenario 2 = ventaja de costos",
-      "escenario 3 = simetría interior",
-      "mirar x*",
-      "mirar ganancias",
+      "1. si todo es igual: mitad y mitad",
+      "2. si A cuesta menos: x* se mueve",
+      "3. si se conserva simetría: vuelve al centro",
+      "comparar precios, x* y ganancias",
+      "resultado: costos explican la diferencia",
     ],
   },
   {
@@ -207,11 +208,11 @@ Mostrar que la versión cuadrática usa td^2 y cambia la sensibilidad de la dema
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/anexo-cuadratico.svg`,
     sketchLines: [
-      "usar td²",
-      "sensibilidad distinta",
-      "ojo con las unidades",
-      "precios muy grandes",
-      "no mezclar con lineal",
+      "1. aquí se usa td²",
+      "2. cambia la sensibilidad",
+      "3. las unidades importan",
+      "precios pueden crecer mucho",
+      "resultado: no mezclar con lineal",
     ],
   },
   {
@@ -227,11 +228,11 @@ Mostrar tres empresas sobre la calle y resaltar que la empresa central cubre mer
     status: "draft",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/tres-empresas.svg`,
     sketchLines: [
-      "F1 - F2 - F3",
-      "la del centro vende más",
-      "q2 > q1",
-      "q2 > q3",
-      "ventaja de posición",
+      "1. ubica F1, F2 y F3",
+      "2. F2 recibe demanda por ambos lados",
+      "3. q2 > q1",
+      "4. q2 > q3",
+      "resultado: ventaja de estar al centro",
     ],
   },
 ];

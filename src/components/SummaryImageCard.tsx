@@ -40,11 +40,11 @@ export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
     <div className="summary-card">
       <div className="summary-card__heading">
         <div>
-          <p className="eyebrow">Síntesis visual del paso</p>
+          <p className="eyebrow">Imagen para entender el paso</p>
           <h3>{spec.caption}</h3>
         </div>
         <button type="button" className="ghost-button" onClick={() => setZoomOpen(true)}>
-          Ampliar
+          Ver grande
         </button>
       </div>
 
@@ -63,7 +63,7 @@ export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
 
       <div className="summary-card__footer">
         <div>
-          <p className="summary-card__label">Qué debes recordar</p>
+          <p className="summary-card__label">Qué debes recordar al resolver</p>
           <p className="summary-card__caption">{spec.alt}</p>
         </div>
         <ul className="takeaway-list">
