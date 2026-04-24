@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { InlineMath } from "react-katex";
 import { SectionBlock } from "./components/SectionBlock";
 import { SummaryImageCard } from "./components/SummaryImageCard";
 import { ScenarioLab } from "./components/ScenarioLab";
@@ -63,14 +64,6 @@ export default function App() {
               Una ruta didáctica para entender el ejercicio de Hotelling paso a paso: primero la intuición,
               después la frontera del mercado y al final el equilibrio de Nash.
             </p>
-            <div className="hero__actions">
-              <a href="#modelo-lineal" className="primary-button">
-                Empezar recorrido
-              </a>
-              <a href="#escenarios" className="ghost-button ghost-button--hero">
-                Probar escenarios
-              </a>
-            </div>
           </div>
 
           <div className="hero__visual">
@@ -90,8 +83,12 @@ export default function App() {
             </div>
 
             <div className="hero__signal" aria-hidden="true">
-              <span>qA = x*</span>
-              <span>qB = L - x*</span>
+              <span>
+                <InlineMath math={"q_A = x^*"} />
+              </span>
+              <span>
+                <InlineMath math={"q_B = L - x^*"} />
+              </span>
             </div>
           </div>
         </section>

@@ -328,14 +328,6 @@ li {
   font-size: clamp(1.04rem, 1.4vw, 1.2rem);
 }
 
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 28px 0 24px;
-}
-
-.primary-button,
 .ghost-button,
 .tiny-button {
   display: inline-flex;
@@ -355,26 +347,12 @@ li {
     background 160ms ease;
 }
 
-.primary-button {
-  color: #1b1720;
-  background: var(--gold);
-  box-shadow: 0 14px 30px rgba(198, 167, 94, 0.26);
-}
-
 .ghost-button {
   border-color: rgba(28, 42, 58, 0.14);
   color: var(--night);
   background: rgba(255, 255, 255, 0.62);
 }
 
-.ghost-button--hero {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fff8ec;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.primary-button:hover,
-.primary-button:focus-visible,
 .ghost-button:hover,
 .ghost-button:focus-visible,
 .tiny-button:hover,
@@ -483,7 +461,7 @@ li {
   backdrop-filter: blur(14px);
 }
 
-.hero__signal span {
+.hero__signal > span {
   flex: 1 1 140px;
   padding: 12px 14px;
   border-radius: 18px;
@@ -491,6 +469,10 @@ li {
   background: rgba(255, 255, 255, 0.09);
   font-weight: 900;
   text-align: center;
+}
+
+.hero__signal .katex {
+  font-size: 1.08em;
 }
 
 .street-diagram {
@@ -1089,7 +1071,6 @@ li {
     max-width: 32ch;
   }
 
-  .hero__actions,
   .hero-card__header,
   .summary-card__heading,
   .summary-card__footer,
@@ -1098,7 +1079,6 @@ li {
     align-items: stretch;
   }
 
-  .primary-button,
   .ghost-button {
     width: 100%;
   }
