@@ -3,7 +3,7 @@ import type { SectionImageSpec } from "../types";
 export const HOTELLING_IMAGE_MODEL = "gpt-image-2" as const;
 export const HOTELLING_IMAGE_OUTPUT_DIR = "public/generated/hotelling" as const;
 export const HOTELLING_IMAGE_PUBLIC_DIR = "/generated/hotelling" as const;
-export const HOTELLING_HERO_IMAGE_PUBLIC_PATH = `${HOTELLING_IMAGE_PUBLIC_DIR}/hero-decision-map.png` as const;
+export const HOTELLING_HERO_IMAGE_PUBLIC_PATH = `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.png` as const;
 
 export const whiteboardVisualDirection = `
 Estilo editorial didáctico sobre fondo marfil claro.

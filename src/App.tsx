@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { BlockMath } from "react-katex";
 import { SectionBlock } from "./components/SectionBlock";
 import { SummaryImageCard } from "./components/SummaryImageCard";
 import { ScenarioLab } from "./components/ScenarioLab";
@@ -98,19 +97,13 @@ export default function App() {
                 <p className="hero-card__title">Mapa de decisión</p>
                 <span>costo total</span>
               </div>
-              <BlockMath math={"\\text{Costo total}=p+td"} />
               <div className="hero-card__graphic">
                 <img
                   src={HOTELLING_HERO_IMAGE_PUBLIC_PATH}
-                  alt="Mapa visual del mercado con A, B y la frontera x*."
+                  alt="Lámina completa del costo total con pasos, fórmula y mapa de decisión entre A y B."
                   className="hero-card__image"
                   loading="eager"
                 />
-              </div>
-              <div className="hero-card__footer">
-                <span>precio</span>
-                <span>distancia</span>
-                <span>frontera x*</span>
               </div>
             </div>
 
