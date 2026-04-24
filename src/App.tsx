@@ -8,7 +8,7 @@ import type { SectionImageSpec } from "./types";
 import { HOTELLING_HERO_IMAGE_PUBLIC_PATH, imageManifest } from "./content/image-manifest";
 
 const sections = [
-  { id: "hero", label: "Competencia espacial" },
+  { id: "hero", label: "Inicio" },
   { id: "panorama", label: "Panorama del tema" },
   { id: "modelo-lineal", label: "Modelo lineal y supuestos" },
   { id: "consumidor-indiferente", label: "Consumidor indiferente" },
