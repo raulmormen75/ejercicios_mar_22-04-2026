@@ -190,8 +190,8 @@ Resumir el escenario 3 con ubicaciones interiores simétricas. Dibujar a=20, b=8
     sectionId: "resumen",
     placement: "after-section",
     prompt: `${whiteboardVisualDirection}
-Comparar visualmente los tres escenarios. Un bloque para simetría, otro para ventaja por costos y otro para simetría interior. Resaltar solo las diferencias clave.`,
-    alt: "Síntesis visual comparativa de los tres escenarios lineales y sus diferencias clave.",
+Comparar visualmente los tres escenarios. Un bloque para simetría, otro para ventaja por costos y otro para simetría interior. Resaltar solo las diferencias principales.`,
+    alt: "Síntesis visual comparativa de los tres escenarios lineales y sus diferencias principales.",
     caption: "El cierre compara qué cambia por costos y qué se mantiene por simetría.",
     quality: "medium",
     size: "1536x1024",

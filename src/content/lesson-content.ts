@@ -17,7 +17,7 @@ export const lessonModules: LessonModule[] = [
         description: "El alumno debe leer esta expresión como «precio más costo por desplazarse hasta A».",
       },
       {
-        label: "Comparación clave",
+        label: "Comparación central",
         math: "\\text{costo total en B}=p_B+t(b-x)",
         description: "La compra cambia de empresa cuando ambas expresiones cuestan lo mismo.",
       },

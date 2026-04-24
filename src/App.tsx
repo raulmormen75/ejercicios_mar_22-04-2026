@@ -214,6 +214,9 @@ export default function App() {
             </article>
           </div>
         </section>
+        <footer className="site-footer" aria-label="Créditos del material">
+          <p>Material elaborado por el prof. Morales Mendoza Raul</p>
+        </footer>
       </main>
     </div>
   );

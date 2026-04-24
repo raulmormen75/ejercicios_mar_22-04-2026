@@ -557,14 +557,26 @@ li {
   padding: 16px 18px;
   border: 1px solid rgba(28, 42, 58, 0.1);
   border-radius: 20px;
+  color: var(--night);
+  min-width: 0;
+  max-width: 100%;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(242, 242, 238, 0.8));
+}
+
+.formula-block .katex {
+  color: var(--night);
 }
 
 .hero-card .katex-display,
 .formula-block .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.formula-block .katex-display {
+  margin: 0;
+  padding-bottom: 2px;
 }
 
 .formula-label {
@@ -596,9 +608,15 @@ li {
     rgba(255, 253, 248, 0.92);
 }
 
-.summary-card__heading,
-.summary-card__footer {
+.summary-card__heading {
   flex-wrap: wrap;
+}
+
+.summary-card__footer {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 18px;
+  align-items: start;
 }
 
 .summary-card__action {
@@ -733,7 +751,7 @@ li {
 }
 
 .summary-card__memory {
-  flex: 1 1 300px;
+  min-width: 0;
 }
 
 .takeaway-list,
@@ -747,7 +765,20 @@ li {
 }
 
 .takeaway-list {
-  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.site-footer {
+  width: min(1120px, calc(100% - 32px));
+  margin: 18px auto 0;
+  padding: 22px 18px 34px;
+  color: rgba(28, 42, 58, 0.72);
+  text-align: center;
+  font-weight: 800;
+}
+
+.site-footer p {
+  margin: 0;
 }
 
 .scenario-lab {
@@ -1073,10 +1104,14 @@ li {
 
   .hero-card__header,
   .summary-card__heading,
-  .summary-card__footer,
   .scenario-panel__toolbar {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .summary-card__footer {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .ghost-button {
