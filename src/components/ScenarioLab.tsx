@@ -176,16 +176,20 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
         </div>
       </div>
 
-      <SummaryImageCard spec={images[activeScenario.id]} takeaways={[
-        {
-          title: "Lectura rápida",
-          text: activeScenario.whyItChanges,
-        },
-        {
-          title: "Verificación",
-          text: activeScenario.verificationNote,
-        },
-      ]} />
+      <SummaryImageCard
+        spec={images[activeScenario.id]}
+        description={activeScenario.whyItChanges}
+        takeaways={[
+          {
+            title: "Lectura rápida",
+            text: activeScenario.whyItChanges,
+          },
+          {
+            title: "Verificación",
+            text: activeScenario.verificationNote,
+          },
+        ]}
+      />
     </section>
   );
 }

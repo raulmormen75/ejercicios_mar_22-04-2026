@@ -3,16 +3,17 @@ import type { SectionImageSpec } from "../types";
 export const HOTELLING_IMAGE_MODEL = "gpt-image-2" as const;
 export const HOTELLING_IMAGE_OUTPUT_DIR = "public/generated/hotelling" as const;
 export const HOTELLING_IMAGE_PUBLIC_DIR = "/generated/hotelling" as const;
+export const HOTELLING_HERO_IMAGE_PUBLIC_PATH = `${HOTELLING_IMAGE_PUBLIC_DIR}/hero-decision-map.png` as const;
 
 export const whiteboardVisualDirection = `
-Estilo de apuntes en pizarrón blanco limpio.
-Trazos de plumón azul, negro, rojo, verde y naranja.
-Escritura manual legible, flechas, círculos, llaves y subrayados.
-Composición horizontal, clara y didáctica.
+Estilo editorial didáctico sobre fondo marfil claro.
+Trazos limpios de plumón o tinta técnica en azul, negro, rojo, verde y dorado sobrio.
+Texto corto, grande y perfectamente legible; si la escritura manual deforma letras, preferir lettering impreso ordenado.
+Composición horizontal, clara y didáctica, pensada para una tarjeta 3:2 dentro de una app web.
 Jerarquía tipográfica alineada con la app: títulos con apariencia serif editorial similar a Newsreader; etiquetas, notas y pasos con sans geométrica similar a Manrope.
-Sin personas, sin salón real, sin decoración extra, sin collages.
 Una sola idea visual por imagen, máximo dos fórmulas y hasta cinco etiquetas breves.
-El objetivo es aclarar cómo resolver la tarea: mostrar el paso, la fórmula mínima y el resultado que se debe recordar.
+Sin personas, sin salón real, sin decoración extra, sin collages, sin estética infantil.
+El objetivo es aclarar cómo resolver el paso y mantener coherencia visual con la interfaz de la aplicación.
 `.trim();
 
 export const imageManifest: SectionImageSpec[] = [
@@ -26,7 +27,7 @@ Mostrar una calle recta con empresa A y empresa B. Señalar un consumidor entre 
     caption: "El problema empieza cuando el alumno ve que distancia y precio se convierten en una sola decisión.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.png`,
     sketchLines: [
@@ -47,7 +48,7 @@ Explicar visualmente que la ruta principal usa costo lineal td y no debe mezclar
     caption: "La ruta principal necesita una sola convención para no mezclar resultados incompatibles.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.png`,
     sketchLines: [
@@ -68,7 +69,7 @@ Mostrar cómo el consumidor indiferente divide el mercado. Dibujar la calle, la 
     caption: "La frontera x* resume el corazón del ejercicio.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/consumidor-indiferente.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/consumidor-indiferente.png`,
     sketchLines: [

@@ -4,6 +4,7 @@ import type { SectionImageSpec, Takeaway } from "../types";
 interface SummaryImageCardProps {
   spec: SectionImageSpec;
   takeaways: Takeaway[];
+  description?: string;
 }
 
 function FallbackSketch({ spec }: { spec: SectionImageSpec }) {
@@ -12,9 +13,9 @@ function FallbackSketch({ spec }: { spec: SectionImageSpec }) {
   return (
     <div className="summary-sketch" aria-hidden="true">
       <div className="summary-sketch__header">
-        <span className="marker marker-blue">apunte</span>
-        <span className="marker marker-red">síntesis</span>
-        <span className="marker marker-green">resultado</span>
+        <span className="marker marker-blue">síntesis</span>
+        <span className="marker marker-red">idea central</span>
+        <span className="marker marker-green">verificación</span>
       </div>
       <div className="summary-sketch__body">
         {lines.map((line, index) => (
@@ -32,20 +33,21 @@ function FallbackSketch({ spec }: { spec: SectionImageSpec }) {
   );
 }
 
-export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
+export function SummaryImageCard({ spec, takeaways, description }: SummaryImageCardProps) {
   const [imageReady, setImageReady] = useState(false);
   const [zoomOpen, setZoomOpen] = useState(false);
   const imagePath = spec.status === "generated" && spec.generatedAssetPath ? spec.generatedAssetPath : spec.assetPath;
+  const helperText = description ?? spec.caption;
 
   return (
     <div className="summary-card">
       <div className="summary-card__heading">
         <div>
-          <p className="eyebrow">Imagen para entender el paso</p>
+          <p className="eyebrow">Síntesis visual del bloque</p>
           <h3>{spec.caption}</h3>
         </div>
-        <button type="button" className="ghost-button" onClick={() => setZoomOpen(true)}>
-          Ver grande
+        <button type="button" className="ghost-button summary-card__action" onClick={() => setZoomOpen(true)}>
+          Ver imagen completa
         </button>
       </div>
 
@@ -56,6 +58,7 @@ export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
             src={imagePath}
             alt={spec.alt}
             className={`summary-card__image ${imageReady ? "" : "summary-card__image--hidden"}`}
+            loading="lazy"
             onLoad={() => setImageReady(true)}
             onError={() => setImageReady(false)}
           />
@@ -63,9 +66,9 @@ export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
       </div>
 
       <div className="summary-card__footer">
-        <div>
-          <p className="summary-card__label">Qué debes recordar al resolver</p>
-          <p className="summary-card__caption">{spec.alt}</p>
+        <div className="summary-card__memory">
+          <p className="summary-card__label">Qué conviene retener</p>
+          <p className="summary-card__caption">{helperText}</p>
         </div>
         <ul className="takeaway-list">
           {takeaways.slice(0, 2).map((takeaway) => (
@@ -82,11 +85,11 @@ export function SummaryImageCard({ spec, takeaways }: SummaryImageCardProps) {
             className="modal-panel"
             role="dialog"
             aria-modal="true"
-            aria-label={`Vista ampliada de ${spec.caption}`}
+            aria-label={`Imagen completa: ${spec.caption}`}
             onClick={(event) => event.stopPropagation()}
           >
             <button type="button" className="ghost-button ghost-button--close" onClick={() => setZoomOpen(false)}>
-              Cerrar
+              Cerrar imagen
             </button>
             {!imageReady ? <FallbackSketch spec={spec} /> : null}
             {imagePath ? (

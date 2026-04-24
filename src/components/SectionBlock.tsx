@@ -49,7 +49,7 @@ export function SectionBlock({ module, image }: SectionBlockProps) {
         </div>
       ) : null}
 
-      <SummaryImageCard spec={image} takeaways={module.takeaways} />
+      <SummaryImageCard spec={image} takeaways={module.takeaways} description={module.summaryCaption} />
     </section>
   );
 }

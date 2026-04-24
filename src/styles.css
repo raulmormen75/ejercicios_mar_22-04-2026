@@ -483,6 +483,21 @@ li {
   margin-top: 8px;
 }
 
+.hero-card__graphic {
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.hero-card__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border: 1px solid rgba(28, 42, 58, 0.1);
+  border-radius: 26px;
+  object-fit: contain;
+  background: #fffdf8;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
 .hero-card__footer span {
   color: var(--night);
   background: rgba(28, 42, 58, 0.06);
@@ -638,6 +653,10 @@ li {
   flex-wrap: wrap;
 }
 
+.summary-card__action {
+  white-space: nowrap;
+}
+
 .summary-card__heading h3 {
   max-width: 860px;
   margin: 0;
@@ -648,12 +667,15 @@ li {
 
 .summary-card__visual {
   margin: 18px 0;
+  overflow: hidden;
+  border-radius: 28px;
 }
 
 .summary-card__image,
 .summary-sketch {
   width: 100%;
-  min-height: 300px;
+  min-height: 340px;
+  aspect-ratio: 3 / 2;
   border: 1px solid rgba(28, 42, 58, 0.1);
   border-radius: 26px;
   background:
@@ -666,6 +688,7 @@ li {
 .summary-card__image {
   object-fit: contain;
   background: #fffdf8;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .summary-card__image--hidden {
@@ -673,7 +696,9 @@ li {
 }
 
 .summary-card__image--large {
-  max-height: 80vh;
+  min-height: auto;
+  max-height: min(78vh, 980px);
+  aspect-ratio: auto;
 }
 
 .summary-sketch {
@@ -759,6 +784,10 @@ li {
   line-height: 1.6;
 }
 
+.summary-card__memory {
+  flex: 1 1 300px;
+}
+
 .takeaway-list,
 .extension-list,
 .assumption-card ul {
@@ -767,6 +796,10 @@ li {
   color: var(--muted);
   line-height: 1.72;
   min-width: 0;
+}
+
+.takeaway-list {
+  flex: 1 1 320px;
 }
 
 .scenario-lab {
@@ -983,21 +1016,26 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(11, 11, 11, 0.68);
+  background: rgba(11, 11, 11, 0.7);
+  backdrop-filter: blur(8px);
 }
 
 .modal-panel {
-  width: min(1000px, 100%);
+  width: min(1100px, 100%);
   max-height: calc(100vh - 48px);
   overflow: auto;
   padding: 18px;
+  display: grid;
+  gap: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 30px;
   background: var(--surface-solid);
+  box-shadow: var(--shadow-strong);
 }
 
 .ghost-button--close {
   margin-left: auto;
-  display: flex;
+  display: inline-flex;
 }
 
 @media (max-width: 1100px) {
@@ -1114,7 +1152,7 @@ li {
 
   .summary-card__image,
   .summary-sketch {
-    min-height: 240px;
+    min-height: 250px;
   }
 
   .modal-backdrop {

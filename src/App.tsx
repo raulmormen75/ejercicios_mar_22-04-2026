@@ -2,12 +2,11 @@ import { useMemo } from "react";
 import { BlockMath } from "react-katex";
 import { SectionBlock } from "./components/SectionBlock";
 import { SummaryImageCard } from "./components/SummaryImageCard";
-import { StreetDiagram } from "./components/StreetDiagram";
 import { ScenarioLab } from "./components/ScenarioLab";
 import { FormulaBlock } from "./components/FormulaBlock";
 import { advancedNotes, lessonModules, scenarios } from "./content/lesson-content";
 import type { SectionImageSpec } from "./types";
-import { imageManifest } from "./content/image-manifest";
+import { HOTELLING_HERO_IMAGE_PUBLIC_PATH, imageManifest } from "./content/image-manifest";
 
 const sections = [
   { id: "hero", label: "Inicio" },
@@ -100,7 +99,14 @@ export default function App() {
                 <span>costo total</span>
               </div>
               <BlockMath math={"\\text{Costo total}=p+td"} />
-              <StreetDiagram L={100} a={0} b={100} xStar={50} />
+              <div className="hero-card__graphic">
+                <img
+                  src={HOTELLING_HERO_IMAGE_PUBLIC_PATH}
+                  alt="Mapa visual del mercado con A, B y la frontera x*."
+                  className="hero-card__image"
+                  loading="eager"
+                />
+              </div>
               <div className="hero-card__footer">
                 <span>precio</span>
                 <span>distancia</span>
@@ -163,6 +169,7 @@ export default function App() {
 
           <SummaryImageCard
             spec={images.resumen}
+            description="El cierre ayuda a distinguir cuándo domina la simetría y cuándo aparece una ventaja por costos."
             takeaways={[
               {
                 title: "Simetría",
@@ -202,6 +209,7 @@ export default function App() {
               </ul>
               <SummaryImageCard
                 spec={images[advancedNotes.cuadratico.summaryImageId]}
+                description={advancedNotes.cuadratico.summary}
                 takeaways={advancedNotes.cuadratico.observations.slice(0, 2).map((item, index) => ({
                   title: index === 0 ? "Cambio de escala" : "Cuidado metodológico",
                   text: item,
@@ -225,6 +233,7 @@ export default function App() {
               </ul>
               <SummaryImageCard
                 spec={images[advancedNotes.tresEmpresas.summaryImageId]}
+                description={advancedNotes.tresEmpresas.summary}
                 takeaways={advancedNotes.tresEmpresas.observations.slice(0, 2).map((item, index) => ({
                   title: index === 0 ? "Posición central" : "Lectura del resultado",
                   text: item,

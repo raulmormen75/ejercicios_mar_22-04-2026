@@ -5,6 +5,8 @@ import {
   HOTELLING_IMAGE_PUBLIC_DIR,
   imageManifest,
 } from "../src/content/image-manifest";
+import { advancedNotes, lessonModules, scenarios } from "../src/content/lesson-content";
+import type { Takeaway } from "../src/types";
 
 type VisualKind =
   | "street-cost"
@@ -81,6 +83,103 @@ const titleByKind: Record<VisualKind, string> = {
   "three-firms": "Anexo: tres empresas y ventaja central",
 };
 
+interface VisualNarrative {
+  eyebrow: string;
+  title: string;
+  description: string;
+  takeaways: Takeaway[];
+  footer: string;
+}
+
+const visualNarratives = new Map<string, VisualNarrative>([
+  ...lessonModules.map((module): [string, VisualNarrative] => [
+    module.id,
+    {
+      eyebrow: module.eyebrow,
+      title: module.title,
+      description: module.goal,
+      takeaways: module.takeaways,
+      footer: module.summaryCaption,
+    },
+  ]),
+  ...scenarios.map((scenario): [string, VisualNarrative] => [
+    scenario.id,
+    {
+      eyebrow: "Escenarios resueltos",
+      title: scenario.title,
+      description: scenario.whyItChanges,
+      takeaways: [
+        {
+          title: "Lectura rápida",
+          text: scenario.whyItChanges,
+        },
+        {
+          title: "Verificación",
+          text: scenario.verificationNote,
+        },
+      ],
+      footer: scenario.verificationNote,
+    },
+  ]),
+  [
+    "resumen",
+    {
+      eyebrow: "Comparación final",
+      title: "Qué cambia entre escenarios",
+      description: "El cuadro final ayuda a distinguir cuándo domina la simetría y cuándo aparece una ventaja por costos.",
+      takeaways: [
+        {
+          title: "Simetría",
+          text: "Cuando costos y posiciones están balanceados, el mercado se reparte por igual.",
+        },
+        {
+          title: "Ventaja",
+          text: "Si una empresa produce más barato, la frontera se mueve y el equilibrio se inclina a su favor.",
+        },
+      ],
+      footer: "El cierre compara qué cambia por costos y qué se mantiene cuando la simetría se conserva.",
+    },
+  ],
+  [
+    "anexo-cuadratico",
+    {
+      eyebrow: "Extensión 1",
+      title: advancedNotes.cuadratico.title,
+      description: advancedNotes.cuadratico.summary,
+      takeaways: [
+        {
+          title: "Cambio de escala",
+          text: advancedNotes.cuadratico.observations[0],
+        },
+        {
+          title: "Cuidado metodológico",
+          text: advancedNotes.cuadratico.observations[1],
+        },
+      ],
+      footer: advancedNotes.cuadratico.observations[2],
+    },
+  ],
+  [
+    "tres-empresas",
+    {
+      eyebrow: "Extensión 2",
+      title: advancedNotes.tresEmpresas.title,
+      description: advancedNotes.tresEmpresas.summary,
+      takeaways: [
+        {
+          title: "Posición central",
+          text: advancedNotes.tresEmpresas.observations[0],
+        },
+        {
+          title: "Lectura del resultado",
+          text: advancedNotes.tresEmpresas.observations[1],
+        },
+      ],
+      footer: advancedNotes.tresEmpresas.observations[2],
+    },
+  ],
+]);
+
 function escapeXml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -138,16 +237,22 @@ function arrow(x1: number, y1: number, x2: number, y2: number, color: string) {
   return `<path d="M${x1} ${y1} C ${(x1 + x2) / 2} ${y1 - 40}, ${(x1 + x2) / 2} ${y2 + 40}, ${x2} ${y2}" fill="none" stroke="${color}" stroke-width="7" stroke-linecap="round" marker-end="url(#arrow)" />`;
 }
 
-function stepNotes(lines: string[]) {
-  return lines
-    .slice(0, 5)
-    .map((line, index) => {
-      const y = 340 + index * 86;
-      const color = [palette.blue, palette.ink, palette.wine, palette.green, palette.orange][index] ?? palette.night;
+function noteCards(items: Takeaway[]) {
+  const cardPalette = [palette.blue, palette.wine, palette.gold];
+
+  return items
+    .slice(0, 2)
+    .map((item, index) => {
+      const color = cardPalette[index] ?? palette.night;
+      const y = 346 + index * 214;
+      const lines = wrapText(item.text, 28).slice(0, 4);
+      const textColor = color === palette.gold ? palette.ink : color;
+
       return `
-        <circle cx="126" cy="${y - 10}" r="18" fill="${color}" />
-        <text x="126" y="${y - 3}" text-anchor="middle" font-family="${font.body}" font-size="18" font-weight="900" fill="#FFFFFF">${index + 1}</text>
-        ${text(wrapText(line.replace(/^\d+\.\s*/, ""), 35), 166, y, 26, color, 850, 8)}
+        <rect x="112" y="${y}" width="356" height="170" rx="30" fill="#FFFFFF" stroke="${color}" stroke-opacity="0.22" stroke-width="3" />
+        <rect x="138" y="${y + 24}" width="168" height="38" rx="19" fill="${color}" opacity="0.12" />
+        <text x="160" y="${y + 49}" font-family="${font.body}" font-size="20" font-weight="900" fill="${textColor}">${escapeXml(item.title)}</text>
+        ${text(lines, 140, y + 94, 23, palette.graphite, 700, 7)}
       `;
     })
     .join("\n");
@@ -327,7 +432,18 @@ function bodyFor(kind: VisualKind) {
 function createSvg(imageIndex: number) {
   const spec = imageManifest[imageIndex];
   const kind = visualKindById[spec.id] ?? "street-cost";
-  const steps = spec.sketchLines.slice(0, 5);
+  const narrative = visualNarratives.get(spec.sectionId);
+  const eyebrow = (narrative?.eyebrow ?? "Síntesis visual").toUpperCase();
+  const title = narrative?.title ?? titleByKind[kind];
+  const description = narrative?.description ?? spec.caption;
+  const cards =
+    narrative?.takeaways.length
+      ? narrative.takeaways
+      : spec.sketchLines.slice(0, 2).map((line, index) => ({
+          title: index === 0 ? "Idea central" : "Paso útil",
+          text: line.replace(/^\d+\.\s*/, ""),
+        }));
+  const footer = narrative?.footer ?? spec.caption;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024" role="img" aria-label="${escapeXml(spec.alt)}">
   <defs>
@@ -357,14 +473,15 @@ function createSvg(imageIndex: number) {
   <rect width="1536" height="1024" rx="44" fill="${palette.paper}" />
   <rect width="1536" height="1024" fill="url(#grid-${imageIndex})" />
   <rect x="70" y="64" width="1396" height="896" rx="40" fill="#FFFFFF" stroke="${palette.night}" stroke-opacity="0.12" stroke-width="3" />
-  <text x="112" y="138" font-family="${font.body}" font-size="27" font-weight="900" letter-spacing="4" fill="${palette.wine}">APUNTE PARA RESOLVER</text>
-  ${text(wrapText(titleByKind[kind], 28), 112, 205, 34, palette.night, 900, 8).replaceAll(font.body, font.title)}
-  <line x1="112" y1="286" x2="1424" y2="286" stroke="${palette.gold}" stroke-width="7" stroke-linecap="round" />
-  ${stepNotes(steps)}
-  <path d="M548 190 C 548 420, 548 620, 548 838" stroke="${palette.night}" stroke-opacity="0.12" stroke-width="4" stroke-dasharray="14 18" />
+  <text x="112" y="138" font-family="${font.body}" font-size="25" font-weight="900" letter-spacing="4" fill="${palette.wine}">${escapeXml(eyebrow)}</text>
+  ${text(wrapText(title, 28), 112, 198, 34, palette.night, 900, 8).replaceAll(font.body, font.title)}
+  ${text(wrapText(description, 33), 112, 298, 21, palette.graphite, 750, 6)}
+  <line x1="112" y1="330" x2="1424" y2="330" stroke="${palette.gold}" stroke-width="7" stroke-linecap="round" />
+  ${noteCards(cards)}
+  <path d="M548 214 C 548 438, 548 636, 548 838" stroke="${palette.night}" stroke-opacity="0.12" stroke-width="4" stroke-dasharray="14 18" />
   ${bodyFor(kind)}
-  <rect x="112" y="850" width="1312" height="62" rx="31" fill="${palette.soft}" stroke="${palette.night}" stroke-opacity="0.1" />
-  <text x="148" y="890" font-family="${font.body}" font-size="24" font-weight="900" fill="${palette.graphite}">Recuerda: identifica el paso, usa solo la fórmula necesaria y revisa qué resultado cambia.</text>
+  <rect x="112" y="840" width="1312" height="88" rx="31" fill="${palette.soft}" stroke="${palette.night}" stroke-opacity="0.1" />
+  ${text(wrapText(footer, 94), 148, 878, 22, palette.graphite, 850, 6)}
 </svg>
 `;
 }

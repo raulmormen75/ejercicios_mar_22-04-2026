@@ -8,6 +8,8 @@ import {
   imageManifest,
   whiteboardVisualDirection,
 } from "../src/content/image-manifest";
+import { advancedNotes, lessonModules, scenarios } from "../src/content/lesson-content";
+import type { Takeaway } from "../src/types";
 
 type CliOptions = {
   ids: Set<string>;
@@ -18,8 +20,105 @@ type CliOptions = {
   concurrency: string;
 };
 
+type VisualNarrative = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  takeaways: Takeaway[];
+  footer: string;
+};
+
 const IMAGEGEN_CLI =
   process.env.IMAGEGEN_CLI ?? "C:\\Users\\spart\\.codex\\skills\\imagegen\\scripts\\image_gen.py";
+
+const visualNarratives = new Map<string, VisualNarrative>([
+  ...lessonModules.map((module): [string, VisualNarrative] => [
+    module.id,
+    {
+      eyebrow: module.eyebrow,
+      title: module.title,
+      description: module.goal,
+      takeaways: module.takeaways,
+      footer: module.summaryCaption,
+    },
+  ]),
+  ...scenarios.map((scenario): [string, VisualNarrative] => [
+    scenario.id,
+    {
+      eyebrow: "Escenarios resueltos",
+      title: scenario.title,
+      description: scenario.whyItChanges,
+      takeaways: [
+        {
+          title: "Lectura rápida",
+          text: scenario.whyItChanges,
+        },
+        {
+          title: "Verificación",
+          text: scenario.verificationNote,
+        },
+      ],
+      footer: scenario.verificationNote,
+    },
+  ]),
+  [
+    "resumen",
+    {
+      eyebrow: "Comparación final",
+      title: "Qué cambia entre escenarios",
+      description: "El cuadro final ayuda a distinguir cuándo domina la simetría y cuándo aparece una ventaja por costos.",
+      takeaways: [
+        {
+          title: "Simetría",
+          text: "Cuando costos y posiciones están balanceados, el mercado se reparte por igual.",
+        },
+        {
+          title: "Ventaja",
+          text: "Si una empresa produce más barato, la frontera se mueve y el equilibrio se inclina a su favor.",
+        },
+      ],
+      footer: "El cierre compara qué cambia por costos y qué se mantiene cuando la simetría se conserva.",
+    },
+  ],
+  [
+    "anexo-cuadratico",
+    {
+      eyebrow: "Extensión 1",
+      title: advancedNotes.cuadratico.title,
+      description: advancedNotes.cuadratico.summary,
+      takeaways: [
+        {
+          title: "Cambio de escala",
+          text: advancedNotes.cuadratico.observations[0],
+        },
+        {
+          title: "Cuidado metodológico",
+          text: advancedNotes.cuadratico.observations[1],
+        },
+      ],
+      footer: advancedNotes.cuadratico.observations[2],
+    },
+  ],
+  [
+    "tres-empresas",
+    {
+      eyebrow: "Extensión 2",
+      title: advancedNotes.tresEmpresas.title,
+      description: advancedNotes.tresEmpresas.summary,
+      takeaways: [
+        {
+          title: "Posición central",
+          text: advancedNotes.tresEmpresas.observations[0],
+        },
+        {
+          title: "Lectura del resultado",
+          text: advancedNotes.tresEmpresas.observations[1],
+        },
+      ],
+      footer: advancedNotes.tresEmpresas.observations[2],
+    },
+  ],
+]);
 
 function parseArgs(argv: string[]): CliOptions {
   const options: CliOptions = {
@@ -113,20 +212,35 @@ function selectImages(options: CliOptions) {
 
 function buildPrompt(image: (typeof imageManifest)[number]) {
   const primaryRequest = image.prompt.replace(whiteboardVisualDirection, "").trim();
+  const narrative = visualNarratives.get(image.sectionId);
+  const exactLabels = [
+    narrative?.eyebrow,
+    narrative?.title,
+    ...(narrative?.takeaways.slice(0, 2).map((item) => item.title) ?? []),
+  ].filter(Boolean);
+  const supportNotes =
+    narrative?.takeaways.slice(0, 2).map((item) => item.text) ?? image.sketchLines.slice(0, 2);
+  const footer = narrative?.footer ?? image.caption;
 
   return `
 Use case: infographic-diagram
 Asset type: imagen didáctica para una app web educativa de economía.
 Primary request: ${primaryRequest}
-Scene/background: pizarrón blanco limpio, superficie marfil clara, trazo de plumón visible y ordenado.
-Style/medium: apunte visual profesional, juvenil y académico; no caricatura infantil; no salón; no personas.
-Composition/framing: horizontal 1536x1024, lectura de izquierda a derecha, una idea central, flechas y círculos para guiar el procedimiento.
+Visual direction: ${whiteboardVisualDirection}
+Scene/background: superficie marfil clara o pizarra blanca editorial, limpia y ordenada, sin ruido visual.
+Style/medium: lámina visual profesional y académica; no caricatura infantil; no salón; no personas; no aspecto de boceto descuidado.
+Composition/framing: horizontal 1536x1024, lectura de izquierda a derecha, una idea central, un diagrama principal y dos zonas breves de apoyo textual.
 Color palette: negro profundo #0B0B0B, azul noche #1C2A3A, dorado sobrio #C6A75E, rojo vino #6E1F28, verde y azul moderados para diferenciar pasos.
 Typography: títulos con apariencia editorial serif similar a Newsreader; etiquetas y notas con sans geométrica similar a Manrope; texto grande, limpio y muy legible.
-Text rules: máximo dos fórmulas y cinco etiquetas cortas; no inventar resultados; no llenar la imagen de derivaciones completas.
+Narrative alignment: la imagen debe sentirse parte de la misma app y usar el mismo tono académico del bloque.
+Exact short labels to preserve: ${exactLabels.join(" | ")}.
+Support notes to preserve in meaning: ${supportNotes.join(" | ")}.
+Footer idea to preserve in meaning: ${footer}.
+Text rules: máximo dos fórmulas y cinco etiquetas cortas; no inventar resultados; no llenar la imagen de derivaciones completas; si una frase larga compromete la legibilidad, reducirla antes de deformarla.
+Text fidelity priority: mejor poco texto pero correcto, limpio y exacto que mucho texto deformado.
 Required visible notes: ${image.sketchLines.join(" | ")}.
 Constraints: debe explicar cómo resolver el paso con claridad; debe coincidir con el contenido matemático validado de la app; sin logotipos, sin firma, sin marca personal, sin watermark.
-Avoid: tipografía genérica tipo Arial, letras deformadas, texto pequeño, ruido visual, exceso de fórmulas, decoración sin función, errores en números o símbolos.
+Avoid: tipografía genérica tipo Arial, letras deformadas, texto pequeño, ruido visual, exceso de fórmulas, decoración sin función, errores en números o símbolos, escritura manual caótica, palabras cortadas, letras inventadas.
 `.trim();
 }
 
