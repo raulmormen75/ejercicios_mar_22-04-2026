@@ -153,7 +153,6 @@ li {
 
 .topbar__nav a,
 .topbar__chip,
-.hero__kicker span,
 .hero-card__footer span,
 .tiny-button {
   border: 1px solid rgba(28, 42, 58, 0.12);
@@ -264,14 +263,6 @@ li {
   max-width: 100%;
 }
 
-.hero__kicker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.hero__kicker span,
 .hero-card__footer span {
   padding: 8px 12px;
   color: rgba(255, 248, 236, 0.92);
@@ -389,31 +380,6 @@ li {
 .tiny-button:hover,
 .tiny-button:focus-visible {
   transform: translateY(-2px);
-}
-
-.hero__meta {
-  display: grid;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.hero__meta li {
-  display: grid;
-  gap: 4px;
-  padding: 14px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.hero__meta strong {
-  color: #fff8ec;
-}
-
-.hero__meta span {
-  color: rgba(255, 248, 236, 0.68);
 }
 
 .hero__visual {
@@ -1124,7 +1090,6 @@ li {
   }
 
   .hero__actions,
-  .hero__kicker,
   .hero-card__header,
   .summary-card__heading,
   .summary-card__footer,

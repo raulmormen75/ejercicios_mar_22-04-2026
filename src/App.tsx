@@ -8,15 +8,15 @@ import type { SectionImageSpec } from "./types";
 import { HOTELLING_HERO_IMAGE_PUBLIC_PATH, imageManifest } from "./content/image-manifest";
 
 const sections = [
-  { id: "hero", label: "Inicio" },
-  { id: "panorama", label: "Mapa del problema" },
-  { id: "modelo-lineal", label: "Supuestos" },
-  { id: "consumidor-indiferente", label: "Frontera x*" },
-  { id: "demandas-ganancias", label: "Demandas" },
-  { id: "reacciones-equilibrio", label: "Equilibrio Nash" },
-  { id: "escenarios", label: "Escenarios" },
-  { id: "resumen", label: "Resumen final" },
-  { id: "extensiones", label: "Anexos" },
+  { id: "hero", label: "Competencia espacial" },
+  { id: "panorama", label: "Panorama del tema" },
+  { id: "modelo-lineal", label: "Modelo lineal y supuestos" },
+  { id: "consumidor-indiferente", label: "Consumidor indiferente" },
+  { id: "demandas-ganancias", label: "Demandas y ganancias" },
+  { id: "reacciones-equilibrio", label: "Funciones de reacción y equilibrio" },
+  { id: "escenarios", label: "Laboratorio de decisiones" },
+  { id: "resumen", label: "Qué cambia entre escenarios" },
+  { id: "extensiones", label: "Rutas opcionales" },
 ];
 
 export default function App() {
@@ -58,10 +58,6 @@ export default function App() {
       <main className="main-content">
         <section id="hero" className="hero">
           <div className="hero__copy">
-            <div className="hero__kicker">
-              <span>Microcurso interactivo</span>
-              <span>Modelo lineal</span>
-            </div>
             <h1>Competencia espacial explicada con mapa, fórmulas y decisiones.</h1>
             <p className="hero__lead">
               Una ruta didáctica para entender el ejercicio de Hotelling paso a paso: primero la intuición,
@@ -75,20 +71,6 @@ export default function App() {
                 Probar escenarios
               </a>
             </div>
-            <ul className="hero__meta">
-              <li>
-                <strong>Ruta principal</strong>
-                <span>Modelo lineal con tres escenarios resueltos.</span>
-              </li>
-              <li>
-                <strong>Apoyo visual</strong>
-                <span>Síntesis tipo pizarrón al cierre de cada bloque.</span>
-              </li>
-              <li>
-                <strong>Extensiones</strong>
-                <span>Anexo cuadrático y caso con tres empresas.</span>
-              </li>
-            </ul>
           </div>
 
           <div className="hero__visual">
