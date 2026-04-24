@@ -30,6 +30,13 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
     });
   }, [activeScenario]);
 
+  const resetPrices = () => {
+    setPrices({
+      pA: activeScenario.equilibrium.pA,
+      pB: activeScenario.equilibrium.pB,
+    });
+  };
+
   const liveResults = clampResults(
     computeInteractiveResults(activeScenario.params, prices),
     activeScenario.params.L,
@@ -39,9 +46,10 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
     <section id="escenarios" className="scenario-lab">
       <div className="section-block__header">
         <p className="eyebrow">Escenarios resueltos</p>
-        <h2>Laboratorio de comparación</h2>
+        <h2>Laboratorio de decisiones</h2>
         <p className="section-block__goal">
-          Recorre cada caso y observa cómo cambian la frontera, la demanda y las ganancias cuando cambian los costos o la ubicación.
+          Mueve los precios y observa cómo cambian la frontera, la demanda y las ganancias.
+          La idea no es memorizar el resultado, sino ver por qué se mueve.
         </p>
       </div>
 
@@ -63,28 +71,49 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
 
       <div className="scenario-layout">
         <div className="scenario-panel">
+          <div className="scenario-panel__toolbar">
+            <span>Escenario activo</span>
+            <button type="button" className="tiny-button" onClick={resetPrices}>
+              Volver al equilibrio
+            </button>
+          </div>
           <div className="scenario-panel__copy">
             <p className="scenario-panel__lead">{activeScenario.whyItChanges}</p>
             <ul className="metric-list">
               <li>
                 <span>Precio de A</span>
-                <strong>{activeScenario.equilibrium.pA}</strong>
+                <strong>{prices.pA}</strong>
+                <small>Equilibrio: {activeScenario.equilibrium.pA}</small>
               </li>
               <li>
                 <span>Precio de B</span>
-                <strong>{activeScenario.equilibrium.pB}</strong>
+                <strong>{prices.pB}</strong>
+                <small>Equilibrio: {activeScenario.equilibrium.pB}</small>
               </li>
               <li>
                 <span>x*</span>
-                <strong>{activeScenario.equilibrium.xStar}</strong>
+                <strong>{liveResults.xStar}</strong>
+                <small>Frontera actual</small>
+              </li>
+              <li>
+                <span>Demanda A</span>
+                <strong>{liveResults.qA}</strong>
+                <small>qA = x*</small>
+              </li>
+              <li>
+                <span>Demanda B</span>
+                <strong>{liveResults.qB}</strong>
+                <small>qB = L - x*</small>
               </li>
               <li>
                 <span>Ganancia de A</span>
-                <strong>{activeScenario.equilibrium.piA}</strong>
+                <strong>{liveResults.piA}</strong>
+                <small>Resultado actual</small>
               </li>
               <li>
                 <span>Ganancia de B</span>
-                <strong>{activeScenario.equilibrium.piB}</strong>
+                <strong>{liveResults.piB}</strong>
+                <small>Resultado actual</small>
               </li>
             </ul>
           </div>

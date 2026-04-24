@@ -9,7 +9,7 @@ Aplicación web educativa construida con `Vite + React + TypeScript` para explic
 - Las fórmulas se renderizan con `KaTeX`.
 - El bloque de escenarios permite mover precios con sliders y recalcular `x*`, demandas y ganancias en vivo.
 - Cada sección tiene una tarjeta de síntesis visual con botón de ampliación.
-- Si no existe la imagen PNG final de una sección, la interfaz usa un fallback visual tipo pizarrón para no romper la experiencia.
+- La app incluye assets SVG versionados en `public/generated/hotelling/` para evitar recursos 404 en Vercel.
 
 ## Stack real
 
@@ -31,6 +31,7 @@ corepack pnpm dev
 corepack pnpm build
 corepack pnpm preview
 corepack pnpm test
+corepack pnpm generate:sketches
 corepack pnpm generate:images
 ```
 
@@ -41,6 +42,7 @@ Scripts disponibles:
 - `preview`: sirve la versión compilada.
 - `test`: ejecuta `scripts/smoke-check.ts`.
 - `test:run`: alias del mismo smoke check.
+- `generate:sketches`: genera assets SVG estáticos tipo pizarrón blanco a partir del manifiesto.
 - `generate:images`: genera imágenes didácticas a partir del manifiesto.
 
 ## Pipeline de imágenes didácticas
@@ -48,7 +50,9 @@ Scripts disponibles:
 La generación previa de imágenes usa `gpt-image-2`.
 
 - Manifiesto: `src/content/image-manifest.ts`
-- Script: `scripts/generate-didactic-images.ts`
+- Assets SVG versionados: `public/generated/hotelling/`
+- Script de assets SVG: `scripts/generate-whiteboard-assets.ts`
+- Script para imágenes con API: `scripts/generate-didactic-images.ts`
 - Salida esperada: `public/generated/hotelling/`
 
 Ejemplos:
@@ -63,10 +67,10 @@ corepack pnpm generate:images -- --dry-run
 
 Nota honesta sobre el estado actual:
 
-- En este workspace no hay PNG generados dentro de `public/generated/hotelling/`; actualmente solo está `.gitkeep`.
-- Si falta `OPENAI_API_KEY`, el script no puede generar imágenes reales y termina con error.
-- Eso no deja inutilizable a la app: `SummaryImageCard` ya trae degradación visual mediante un fallback local basado en `sketchLines`.
-- Si se quiere desplegar con imágenes finales, hay que generarlas antes del build o incluirlas por otro flujo explícito.
+- En este workspace ya hay SVG estáticos listos para producción, generados desde el manifiesto para mantener el estilo de pizarrón blanco.
+- Si falta `OPENAI_API_KEY`, el script de `gpt-image-2` no puede generar imágenes finales y termina con error.
+- Eso no bloquea el despliegue: Vercel ya recibe assets visuales reales y `SummaryImageCard` conserva un fallback local si alguna imagen no carga.
+- Si después se aprueban imágenes finales generadas con `gpt-image-2`, se pueden sustituir los SVG o ajustar `assetPath` en el manifiesto.
 
 ## Despliegue en Vercel
 
@@ -83,18 +87,19 @@ Flujo recomendado:
 
 1. `corepack pnpm install`
 2. `corepack pnpm build`
-3. Generar imágenes antes del deploy solo si se quieren PNG finales en producción.
+3. Mantener los SVG versionados o generar imágenes finales con `gpt-image-2` antes del deploy.
 4. Importar el repositorio en Vercel o desplegar con el flujo que use el equipo.
 
-Si no se generan imágenes antes del deploy, la app sigue funcionando con el fallback visual ya implementado.
+Si no se generan imágenes con API antes del deploy, la app sigue funcionando con los SVG versionados y el fallback visual ya implementado.
 
 ## Verificación realizada en este workspace
 
-Estado comprobado el `22 de abril de 2026`:
+Estado comprobado el `24 de abril de 2026`:
 
 - `corepack pnpm build` completó sin errores.
 - `corepack pnpm test` completó sin errores.
-- Se revisó la salida compilada con `pnpm preview` y captura en navegador real headless.
+- Se verificó carga local de assets SVG con respuesta `200 OK`.
+- Se revisó la app renderizada en navegador real headless en escritorio y móvil.
 
 ## Estructura útil para ubicarse rápido
 
@@ -105,4 +110,5 @@ Estado comprobado el `22 de abril de 2026`:
 - `src/components/ScenarioLab.tsx`: laboratorio interactivo.
 - `src/components/SummaryImageCard.tsx`: imágenes y fallback visual.
 - `scripts/generate-didactic-images.ts`: generación previa de PNG con `gpt-image-2`.
+- `scripts/generate-whiteboard-assets.ts`: generación local de SVG tipo pizarrón blanco.
 - `scripts/smoke-check.ts`: comprobación rápida de contenido, fórmulas y manifiesto.

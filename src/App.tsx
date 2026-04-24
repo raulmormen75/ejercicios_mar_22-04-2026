@@ -10,7 +10,8 @@ import type { SectionImageSpec } from "./types";
 import { imageManifest } from "./content/image-manifest";
 
 const sections = [
-  { id: "hero", label: "Panorama" },
+  { id: "hero", label: "Inicio" },
+  { id: "panorama", label: "Panorama" },
   { id: "modelo-lineal", label: "Modelo lineal" },
   { id: "escenarios", label: "Escenarios" },
   { id: "resumen", label: "Resumen" },
@@ -35,13 +36,16 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <aside className="sidebar">
-        <div className="sidebar__brand">
-          <p>Raul</p>
-          <span>App didáctica de asesoría</span>
-        </div>
+      <header className="topbar">
+        <a className="topbar__brand" href="#hero" aria-label="Volver al inicio">
+          <span className="brand-mark">R</span>
+          <span>
+            <strong>Raul</strong>
+            <small>Asesoría económica aplicada</small>
+          </span>
+        </a>
         <nav aria-label="Navegación principal">
-          <ul className="sidebar__nav">
+          <ul className="topbar__nav">
             {sections.map((section) => (
               <li key={section.id}>
                 <a href={`#${section.id}`}>{section.label}</a>
@@ -49,36 +53,63 @@ export default function App() {
             ))}
           </ul>
         </nav>
-      </aside>
+        <div className="topbar__chip">Hotelling 2026</div>
+      </header>
 
       <main className="main-content">
         <section id="hero" className="hero">
           <div className="hero__copy">
-            <p className="eyebrow">Modelo de Hotelling y competencia espacial</p>
-            <h1>Una app para entender el ejercicio, no solo para copiar fórmulas.</h1>
+            <div className="hero__kicker">
+              <span>Microcurso interactivo</span>
+              <span>Modelo lineal</span>
+            </div>
+            <h1>Competencia espacial explicada con mapa, fórmulas y decisiones.</h1>
             <p className="hero__lead">
-              Aquí el alumno recorre el modelo lineal desde la intuición económica hasta el equilibrio de Nash. Cada bloque cierra con una síntesis visual tipo pizarrón para fijar el paso antes de seguir.
+              Una ruta didáctica para entender el ejercicio de Hotelling paso a paso: primero la intuición,
+              después la frontera del mercado y al final el equilibrio de Nash.
             </p>
             <div className="hero__actions">
               <a href="#modelo-lineal" className="primary-button">
                 Empezar recorrido
               </a>
-              <a href="#escenarios" className="ghost-button">
-                Ir a escenarios
+              <a href="#escenarios" className="ghost-button ghost-button--hero">
+                Probar escenarios
               </a>
             </div>
             <ul className="hero__meta">
-              <li>Ruta principal: modelo lineal</li>
-              <li>Extensiones: cuadrático y tres empresas</li>
-              <li>Texto en español de México y síntesis visual por bloque</li>
+              <li>
+                <strong>Ruta principal</strong>
+                <span>Modelo lineal con tres escenarios resueltos.</span>
+              </li>
+              <li>
+                <strong>Apoyo visual</strong>
+                <span>Síntesis tipo pizarrón al cierre de cada bloque.</span>
+              </li>
+              <li>
+                <strong>Extensiones</strong>
+                <span>Anexo cuadrático y caso con tres empresas.</span>
+              </li>
             </ul>
           </div>
 
           <div className="hero__visual">
             <div className="hero-card">
-              <p className="hero-card__title">Costo total de comprar</p>
+              <div className="hero-card__header">
+                <p className="hero-card__title">Mapa de decisión</p>
+                <span>costo total</span>
+              </div>
               <BlockMath math={"\\text{Costo total}=p+td"} />
               <StreetDiagram L={100} a={0} b={100} xStar={50} />
+              <div className="hero-card__footer">
+                <span>precio</span>
+                <span>distancia</span>
+                <span>frontera x*</span>
+              </div>
+            </div>
+
+            <div className="hero__signal" aria-hidden="true">
+              <span>qA = x*</span>
+              <span>qB = L - x*</span>
             </div>
           </div>
         </section>

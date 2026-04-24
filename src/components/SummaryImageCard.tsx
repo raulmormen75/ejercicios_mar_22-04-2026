@@ -12,9 +12,9 @@ function FallbackSketch({ spec }: { spec: SectionImageSpec }) {
   return (
     <div className="summary-sketch" aria-hidden="true">
       <div className="summary-sketch__header">
-        <span className="marker marker-blue">pizarrón</span>
+        <span className="marker marker-blue">apunte</span>
         <span className="marker marker-red">síntesis</span>
-        <span className="marker marker-green">paso</span>
+        <span className="marker marker-green">resultado</span>
       </div>
       <div className="summary-sketch__body">
         {lines.map((line, index) => (
@@ -24,9 +24,9 @@ function FallbackSketch({ spec }: { spec: SectionImageSpec }) {
         ))}
       </div>
       <div className="summary-sketch__footer">
-        <span>plumón azul</span>
+        <span>plumón de color</span>
         <span>flechas</span>
-        <span>resultado</span>
+        <span>idea central</span>
       </div>
     </div>
   );

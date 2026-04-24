@@ -7,9 +7,11 @@ test-results/
 coverage/
 *.tsbuildinfo
 preview-server*.log
+dev-server.log
 rendered-dom.html
 desktop-check.png
 mobile-check.png
+.edge-headless-profile*/
 vite.config.js
 vite.config.d.ts
 scripts/*.d.ts

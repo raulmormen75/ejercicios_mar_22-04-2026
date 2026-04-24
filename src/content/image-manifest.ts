@@ -25,7 +25,7 @@ Mostrar una calle recta con empresa A y empresa B. Señalar un consumidor entre 
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.svg`,
     sketchLines: [
       "calle recta",
       "empresa A y empresa B",
@@ -45,7 +45,7 @@ Explicar visualmente que la ruta principal usa costo lineal td y no debe mezclar
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.svg`,
     sketchLines: [
       "usar td",
       "no mezclar con td²",
@@ -65,7 +65,7 @@ Mostrar cómo el consumidor indiferente divide el mercado. Dibujar la calle, la 
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/consumidor-indiferente.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/consumidor-indiferente.svg`,
     sketchLines: [
       "igualar costos",
       "aparece x*",
@@ -85,7 +85,7 @@ Explicar que qA sale de x* y qB sale de L - x*. Dibujar una calle segmentada y r
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/demandas-desde-xstar.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/demandas-desde-xstar.svg`,
     sketchLines: [
       "qA = x*",
       "qB = L - x*",
@@ -105,7 +105,7 @@ Mostrar dos rectas de reacción que se cruzan. Etiquetar solo RA, RB y equilibri
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/funciones-reaccion.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/funciones-reaccion.svg`,
     sketchLines: [
       "RA",
       "RB",
@@ -125,7 +125,7 @@ Resumir el escenario 1 con simetría total. Dibujar extremos opuestos, x*=50, pr
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-1.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-1.svg`,
     sketchLines: [
       "simetría total",
       "pA = pB",
@@ -145,7 +145,7 @@ Resumir el escenario 2 con ventaja de costos para A. Dibujar la frontera movida 
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-2.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-2.svg`,
     sketchLines: [
       "cA < cB",
       "pA < pB",
@@ -165,7 +165,7 @@ Resumir el escenario 3 con ubicaciones interiores simétricas. Dibujar a=20, b=8
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-3.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-3.svg`,
     sketchLines: [
       "a = 20",
       "b = 80",
@@ -185,7 +185,7 @@ Comparar visualmente los tres escenarios. Un bloque para simetría, otro para ve
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/resumen-comparacion.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/resumen-comparacion.svg`,
     sketchLines: [
       "escenario 1 = simétrico",
       "escenario 2 = ventaja de costos",
@@ -205,7 +205,7 @@ Mostrar que la versión cuadrática usa td^2 y cambia la sensibilidad de la dema
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/anexo-cuadratico.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/anexo-cuadratico.svg`,
     sketchLines: [
       "usar td²",
       "sensibilidad distinta",
@@ -225,7 +225,7 @@ Mostrar tres empresas sobre la calle y resaltar que la empresa central cubre mer
     quality: "medium",
     size: "1536x1024",
     status: "draft",
-    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/tres-empresas.png`,
+    assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/tres-empresas.svg`,
     sketchLines: [
       "F1 - F2 - F3",
       "la del centro vende más",

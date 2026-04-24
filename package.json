@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "tsx scripts/smoke-check.ts",
     "test:run": "tsx scripts/smoke-check.ts",
-    "generate:images": "tsx scripts/generate-didactic-images.ts"
+    "generate:images": "tsx scripts/generate-didactic-images.ts",
+    "generate:sketches": "tsx scripts/generate-whiteboard-assets.ts"
   },
   "dependencies": {
     "@fontsource/manrope": "^5.1.1",

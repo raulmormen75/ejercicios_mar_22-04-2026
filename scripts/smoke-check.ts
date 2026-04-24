@@ -1,15 +1,26 @@
 import process from "node:process";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { imageManifest } from "../src/content/image-manifest";
 import { lessonModules, scenarios } from "../src/content/lesson-content";
 import { computeLinearEquilibrium } from "../src/content/calculations";
 
-function assert(condition: unknown, message: string) {
+function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
     throw new Error(message);
   }
 }
 
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifestBySection = new Map(imageManifest.map((image) => [image.sectionId, image]));
+
+for (const image of imageManifest) {
+  assert(image.assetPath, `La imagen "${image.id}" no tiene assetPath.`);
+
+  const assetPath = path.join(projectRoot, "public", image.assetPath.replace(/^\//, ""));
+  assert(existsSync(assetPath), `No existe el asset estático para "${image.id}": ${image.assetPath}`);
+}
 
 for (const module of lessonModules) {
   assert(
