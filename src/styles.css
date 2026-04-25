@@ -1114,8 +1114,21 @@ li {
     gap: 12px;
   }
 
+  .summary-card {
+    padding: 18px;
+  }
+
+  .summary-card__visual {
+    margin-inline: -8px;
+  }
+
   .ghost-button {
     width: 100%;
+  }
+
+  .ghost-button--close {
+    width: auto;
+    justify-self: end;
   }
 
   .scenario-tabs {
@@ -1138,6 +1151,11 @@ li {
   .summary-card__image {
     height: auto;
     aspect-ratio: auto;
+  }
+
+  .summary-sketch {
+    max-height: 360px;
+    overflow: hidden;
   }
 
   .modal-backdrop {
