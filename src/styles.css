@@ -1132,7 +1132,12 @@ li {
 
   .summary-card__image,
   .summary-sketch {
-    min-height: 250px;
+    min-height: auto;
+  }
+
+  .summary-card__image {
+    height: auto;
+    aspect-ratio: auto;
   }
 
   .modal-backdrop {

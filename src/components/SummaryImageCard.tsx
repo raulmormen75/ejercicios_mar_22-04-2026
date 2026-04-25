@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { SectionImageSpec, Takeaway } from "../types";
 
 interface SummaryImageCardProps {
@@ -39,6 +39,33 @@ export function SummaryImageCard({ spec, takeaways, description }: SummaryImageC
   const imagePath = spec.status === "generated" && spec.generatedAssetPath ? spec.generatedAssetPath : spec.assetPath;
   const helperText = description ?? spec.caption;
 
+  useEffect(() => {
+    setImageReady(false);
+
+    if (!imagePath) {
+      return;
+    }
+
+    let active = true;
+    const previewImage = new Image();
+
+    previewImage.onload = () => {
+      if (active) {
+        setImageReady(true);
+      }
+    };
+    previewImage.onerror = () => {
+      if (active) {
+        setImageReady(false);
+      }
+    };
+    previewImage.src = imagePath;
+
+    return () => {
+      active = false;
+    };
+  }, [imagePath]);
+
   return (
     <div className="summary-card">
       <div className="summary-card__heading">
@@ -58,7 +85,7 @@ export function SummaryImageCard({ spec, takeaways, description }: SummaryImageC
             src={imagePath}
             alt={spec.alt}
             className={`summary-card__image ${imageReady ? "" : "summary-card__image--hidden"}`}
-            loading="lazy"
+            decoding="async"
             onLoad={() => setImageReady(true)}
             onError={() => setImageReady(false)}
           />
