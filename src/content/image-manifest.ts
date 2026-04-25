@@ -90,7 +90,7 @@ Explicar que qA sale de x* y qB sale de L - x*. Dibujar una calle segmentada y r
     caption: "La cantidad vendida aparece al medir la calle desde la frontera.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/demandas-desde-xstar.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/demandas-desde-xstar.png`,
     sketchLines: [
@@ -111,7 +111,7 @@ Mostrar dos rectas de reacción que se cruzan. Explicar que RA es el mejor preci
     caption: "Cada empresa responde al precio de la otra y el equilibrio aparece donde ambas respuestas coinciden.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/funciones-reaccion.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/funciones-reaccion.png`,
     sketchLines: [
