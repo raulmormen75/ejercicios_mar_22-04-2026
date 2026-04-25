@@ -6,14 +6,14 @@ export const HOTELLING_IMAGE_PUBLIC_DIR = "/generated/hotelling" as const;
 export const HOTELLING_HERO_IMAGE_PUBLIC_PATH = `${HOTELLING_IMAGE_PUBLIC_DIR}/panorama-costo-total.png` as const;
 
 export const whiteboardVisualDirection = `
-Estilo editorial didáctico sobre fondo marfil claro.
-Trazos limpios de plumón o tinta técnica en azul, negro, rojo, verde y dorado sobrio.
-Texto corto, grande y perfectamente legible; si la escritura manual deforma letras, preferir lettering impreso ordenado.
-Composición horizontal, clara y didáctica, pensada para una tarjeta 3:2 dentro de una app web.
-Jerarquía tipográfica alineada con la app: títulos con apariencia serif editorial similar a Newsreader; etiquetas, notas y pasos con sans geométrica similar a Manrope.
-Una sola idea visual por imagen, máximo dos fórmulas y hasta cinco etiquetas breves.
-Sin personas, sin salón real, sin decoración extra, sin collages, sin estética infantil.
-El objetivo es aclarar cómo resolver el paso y mantener coherencia visual con la interfaz de la aplicación.
+Estilo de apunte en pizarrón blanco sobre fondo marfil claro, como una lámina escrita con plumones.
+Trazos manuales limpios, gruesos y legibles en azul, negro, rojo vino, verde y dorado sobrio.
+Texto corto, grande y perfectamente legible; usar lettering impreso con apariencia de plumón, no letra deformada.
+Composición horizontal 3:2 con dos zonas: columna izquierda de pasos numerados y zona derecha con el diagrama principal.
+Usar títulos grandes, etiquetas breves, cajas redondeadas, flechas claras y una franja inferior de recordatorio.
+Una sola idea visual por imagen, máximo dos fórmulas principales y hasta cinco etiquetas breves.
+Sin personas, sin salón real, sin decoración extra, sin collages, sin estética infantil y sin apariencia SVG.
+El objetivo es que parezca un apunte de profesor claro, académico y listo para estudiar en móvil.
 `.trim();
 
 export const imageManifest: SectionImageSpec[] = [
@@ -132,7 +132,7 @@ Resumir el escenario 1 con simetría total. Dibujar extremos opuestos, x*=50, pr
     caption: "Cuando todo es simétrico, el resultado también lo es.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-1.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-1.png`,
     sketchLines: [
@@ -153,7 +153,7 @@ Resumir el escenario 2 con ventaja de costos para A. Dibujar la frontera movida 
     caption: "Una ventaja de costos le permite a A cobrar menos y ganar más mercado.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-2.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-2.png`,
     sketchLines: [
@@ -174,7 +174,7 @@ Resumir el escenario 3 con ubicaciones interiores simétricas. Dibujar a=20, b=8
     caption: "Mover las empresas hacia el interior no rompe el equilibrio si la simetría se conserva.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-3.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/escenario-3.png`,
     sketchLines: [
@@ -195,7 +195,7 @@ Comparar visualmente los tres escenarios. Un bloque para simetría, otro para ve
     caption: "El cierre compara qué cambia por costos y qué se mantiene por simetría.",
     quality: "medium",
     size: "1536x1024",
-    status: "draft",
+    status: "generated",
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/resumen-comparacion.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/resumen-comparacion.png`,
     sketchLines: [
