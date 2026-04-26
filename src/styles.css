@@ -249,7 +249,6 @@ li {
 .scenario-lab,
 .summary-card,
 .scenario-panel,
-.scenario-side > *,
 .extension-card,
 .assumption-card,
 .step-card {
@@ -374,7 +373,6 @@ li {
 .summary-card,
 .step-card,
 .scenario-panel,
-.scenario-side > *,
 .comparison-table {
   border: 1px solid var(--line);
   border-radius: 30px;
@@ -799,7 +797,6 @@ li {
 
 .scenario-guide {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin-top: 22px;
 }
@@ -887,11 +884,12 @@ li {
   color: #1b1720;
 }
 
-.scenario-layout {
+.scenario-results-row {
   margin-top: 18px;
   display: grid;
-  grid-template-columns: minmax(0, 1.22fr) minmax(290px, 0.78fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+  align-items: stretch;
 }
 
 .scenario-panel {
@@ -923,6 +921,11 @@ li {
   padding: 0;
   margin: 18px 0;
   list-style: none;
+}
+
+.metric-list--compact {
+  grid-template-columns: 1fr;
+  margin-bottom: 14px;
 }
 
 .metric-list li {
@@ -987,15 +990,6 @@ li {
   accent-color: var(--wine);
 }
 
-.scenario-side {
-  display: grid;
-  gap: 18px;
-}
-
-.scenario-side > * {
-  background: rgba(255, 253, 248, 0.95);
-}
-
 .scenario-charts {
   margin: 0;
   padding: 14px;
@@ -1005,16 +999,18 @@ li {
     radial-gradient(circle at 88% 12%, rgba(198, 167, 94, 0.18), transparent 24%),
     rgba(255, 253, 248, 0.95);
   box-shadow: var(--shadow-soft);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .scenario-charts--wide {
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .scenario-charts__svg {
   width: 100%;
-  min-height: 420px;
+  min-width: 820px;
+  min-height: 620px;
 }
 
 .scenario-charts__title,
@@ -1170,7 +1166,7 @@ li {
   }
 
   .hero,
-  .scenario-layout,
+  .scenario-results-row,
   .extension-grid {
     grid-template-columns: minmax(0, 1fr);
   }

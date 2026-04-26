@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import { FormulaBlock } from "./FormulaBlock";
 import { ScenarioCharts } from "./ScenarioCharts";
-import { StreetDiagram } from "./StreetDiagram";
 import { SummaryImageCard } from "./SummaryImageCard";
 import {
   clampResults,
   computeInteractiveResults,
-  reactionPriceA,
-  reactionPriceB,
 } from "../content/calculations";
 import type { ScenarioDefinition, SectionImageSpec } from "../types";
 import { formatNumber, formatSignedNumber } from "../utils/formatters";
@@ -99,8 +95,8 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
         </article>
         <article>
           <span>3</span>
-          <strong>Lee la gráfica y vuelve al equilibrio.</strong>
-          <p>La gráfica muestra el cambio en vivo. El botón de reinicio regresa al resultado original.</p>
+          <strong>Lee la gráfica interactiva.</strong>
+          <p>Primero ajusta los parámetros; después revisa la gráfica amplia que aparece debajo.</p>
         </article>
       </div>
 
@@ -120,20 +116,10 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
         ))}
       </div>
 
-      <ScenarioCharts
-        params={activeScenario.params}
-        equilibrium={activeScenario.equilibrium}
-        liveResults={liveResults}
-        title="Gráfica dinámica del escenario"
-        description="Demanda, ganancia y precio cambian al mover los controles."
-        className="scenario-charts--wide"
-        valueFormatter={(value) => formatNumber(value)}
-      />
-
-      <div className="scenario-layout">
-        <div className="scenario-panel">
+      <div className="scenario-results-row">
+        <article className="scenario-panel">
           <div className="scenario-panel__toolbar">
-            <span>Escenario activo</span>
+            <span>Escenario actual</span>
             <button type="button" className="tiny-button" onClick={resetPrices}>
               Volver al equilibrio
             </button>
@@ -157,40 +143,8 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
                   {formatSignedNumber(differenceFromEquilibrium.pB)}
                 </small>
               </li>
-              <li>
-                <span>Frontera x*</span>
-                <strong>{formatNumber(liveResults.xStar)}</strong>
-                <small>Punto donde al consumidor le cuesta igual comprar en A o B</small>
-              </li>
-              <li>
-                <span>Demanda A</span>
-                <strong>{formatNumber(liveResults.qA)}</strong>
-                <small>Consumidores que quedan del lado de A</small>
-              </li>
-              <li>
-                <span>Demanda B</span>
-                <strong>{formatNumber(liveResults.qB)}</strong>
-                <small>Consumidores que quedan del lado de B</small>
-              </li>
-              <li>
-                <span>Ganancia de A</span>
-                <strong>{formatNumber(liveResults.piA)}</strong>
-                <small>Resultado actual</small>
-              </li>
-              <li>
-                <span>Ganancia de B</span>
-                <strong>{formatNumber(liveResults.piB)}</strong>
-                <small>Resultado actual</small>
-              </li>
             </ul>
           </div>
-
-          <StreetDiagram
-            L={activeScenario.params.L}
-            a={activeScenario.params.a}
-            b={activeScenario.params.b}
-            xStar={liveResults.xStar}
-          />
 
           <div className="slider-grid">
             <label>
@@ -235,50 +189,66 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
               </small>
             </label>
           </div>
-        </div>
+        </article>
 
-        <div className="scenario-side">
-          <article className="step-card">
-            <p className="step-card__title">Lectura rápida del resultado</p>
-            <p>
-              Con estos precios, A atiende {formatNumber(liveResults.qA)} consumidores y B atiende{" "}
-              {formatNumber(liveResults.qB)}. La frontera queda en x* ={" "}
-              {formatNumber(liveResults.xStar)}.
-            </p>
-            <FormulaBlock math={`x^*=${formatNumber(liveResults.xStar)}`} />
-            <FormulaBlock
-              math={`q_A=${formatNumber(liveResults.qA)},\\quad q_B=${formatNumber(liveResults.qB)}`}
-            />
-            <FormulaBlock
-              math={`\\pi_A=${formatNumber(liveResults.piA)},\\quad \\pi_B=${formatNumber(
-                liveResults.piB,
-              )}`}
-            />
-          </article>
+        <article className="step-card">
+          <p className="step-card__title">Resultado final</p>
+          <p>
+            Con estos precios, A atiende {formatNumber(liveResults.qA)} consumidores y B atiende{" "}
+            {formatNumber(liveResults.qB)}. La frontera queda en x* ={" "}
+            {formatNumber(liveResults.xStar)}.
+          </p>
+          <ul className="metric-list metric-list--compact">
+            <li>
+              <span>Frontera x*</span>
+              <strong>{formatNumber(liveResults.xStar)}</strong>
+              <small>Punto de indiferencia</small>
+            </li>
+            <li>
+              <span>Demanda A</span>
+              <strong>{formatNumber(liveResults.qA)}</strong>
+              <small>Mercado de A</small>
+            </li>
+            <li>
+              <span>Demanda B</span>
+              <strong>{formatNumber(liveResults.qB)}</strong>
+              <small>Mercado de B</small>
+            </li>
+            <li>
+              <span>Ganancia de A</span>
+              <strong>{formatNumber(liveResults.piA)}</strong>
+              <small>Resultado actual</small>
+            </li>
+            <li>
+              <span>Ganancia de B</span>
+              <strong>{formatNumber(liveResults.piB)}</strong>
+              <small>Resultado actual</small>
+            </li>
+          </ul>
+        </article>
 
-          <article className="step-card">
-            <p className="step-card__title">Cómo interpretar el movimiento</p>
-            <p>{liveInterpretation}</p>
-            <FormulaBlock
-              math={`R_A=${formatNumber(
-                reactionPriceA(activeScenario.params, prices.pB),
-              )},\\quad R_B=${formatNumber(reactionPriceB(activeScenario.params, prices.pA))}`}
-            />
-          </article>
-
-          <article className="step-card">
-            <p className="step-card__title">Equilibrio de referencia</p>
-            <p>{activeScenario.verificationNote}</p>
-          </article>
-        </div>
+        <article className="step-card">
+          <p className="step-card__title">Cómo interpretar el movimiento</p>
+          <p>{liveInterpretation}</p>
+        </article>
       </div>
+
+      <ScenarioCharts
+        params={activeScenario.params}
+        equilibrium={activeScenario.equilibrium}
+        liveResults={liveResults}
+        title="Gráfica dinámica del escenario"
+        description="Demanda, ganancia y precio cambian al mover los controles."
+        className="scenario-charts--wide"
+        valueFormatter={(value) => formatNumber(value)}
+      />
 
       <SummaryImageCard
         spec={images[activeScenario.id]}
         description={activeScenario.whyItChanges}
         takeaways={[
           {
-            title: "Lectura rápida",
+            title: "Resultado final",
             text: activeScenario.whyItChanges,
           },
           {

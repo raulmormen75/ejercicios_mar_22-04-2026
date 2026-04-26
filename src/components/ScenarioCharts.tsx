@@ -33,14 +33,21 @@ export interface ScenarioChartsProps {
   valueFormatter?: (value: number, key: MetricKey) => string;
 }
 
-const SVG_WIDTH = 720;
-const SVG_HEIGHT = 460;
-const CHART_LEFT = 130;
-const CHART_WIDTH = 430;
-const BAR_HEIGHT = 20;
-const GROUP_GAP = 134;
-const GROUP_TOP = 72;
-const ROW_GAP = 34;
+const SVG_WIDTH = 920;
+const SVG_HEIGHT = 660;
+const INNER_X = 48;
+const INNER_Y = 34;
+const HEADER_TO_CHARTS = 52;
+const CHART_LEFT = 160;
+const CHART_WIDTH = 560;
+const VALUE_GAP = 24;
+const BAR_HEIGHT = 22;
+const GROUP_GAP = 174;
+const GROUP_TOP = 70;
+const ROW_GAP = 40;
+const AXIS_Y = GROUP_TOP + ROW_GAP + 38;
+const AXIS_LABEL_Y = AXIS_Y + 22;
+const LEGEND_Y = HEADER_TO_CHARTS + 2 * GROUP_GAP + AXIS_LABEL_Y + 40;
 
 const colorByFirm = {
   A: "var(--night)",
@@ -201,21 +208,25 @@ function ChartRows({
               style={transitionStyle}
             />
             {showEquilibrium ? (
-              <g className="scenario-charts__equilibrium-marker" style={transitionStyle}>
+              <g
+                className="scenario-charts__equilibrium-marker"
+                style={transitionStyle}
+                transform={`translate(${equilibriumX} 0)`}
+              >
                 <line
-                  x1={equilibriumX}
-                  x2={equilibriumX}
+                  x1="0"
+                  x2="0"
                   y1={y - 5}
                   y2={y + BAR_HEIGHT + 5}
                   stroke="var(--gold)"
                   strokeWidth="3"
                   strokeLinecap="round"
                 />
-                <circle cx={equilibriumX} cy={y + BAR_HEIGHT / 2} r="4" fill="var(--gold)" />
+                <circle cx="0" cy={y + BAR_HEIGHT / 2} r="4.5" fill="var(--gold)" />
               </g>
             ) : null}
             <text
-              x={CHART_LEFT + CHART_WIDTH + 18}
+              x={CHART_LEFT + CHART_WIDTH + VALUE_GAP}
               y={y + 15}
               className="scenario-charts__value"
               fill="var(--graphite)"
@@ -248,14 +259,14 @@ function ChartGroupSvg(props: ChartGroupSvgProps) {
       <line
         x1={CHART_LEFT}
         x2={CHART_LEFT + CHART_WIDTH}
-        y1={GROUP_TOP + ROW_GAP + 35}
-        y2={GROUP_TOP + ROW_GAP + 35}
+        y1={AXIS_Y}
+        y2={AXIS_Y}
         stroke="rgba(28, 42, 58, 0.14)"
         strokeDasharray="4 7"
       />
       <text
         x={CHART_LEFT}
-        y={GROUP_TOP + ROW_GAP + 57}
+        y={AXIS_LABEL_Y}
         className="scenario-charts__axis-label"
         fill="var(--muted)"
       >
@@ -263,7 +274,7 @@ function ChartGroupSvg(props: ChartGroupSvgProps) {
       </text>
       <text
         x={CHART_LEFT + CHART_WIDTH}
-        y={GROUP_TOP + ROW_GAP + 57}
+        y={AXIS_LABEL_Y}
         className="scenario-charts__axis-label scenario-charts__axis-label--end"
         fill="var(--muted)"
         textAnchor="end"
@@ -292,7 +303,7 @@ export function ScenarioCharts({
   const descriptionId = makeId(baseId, "description");
   const groups = buildGroups(params, equilibrium, liveResults, valueFormatter);
   const transitionStyle: CSSProperties = {
-    transition: `width ${animationDurationMs}ms ease, x ${animationDurationMs}ms ease, transform ${animationDurationMs}ms ease`,
+    transition: `width ${animationDurationMs}ms ease, transform ${animationDurationMs}ms ease`,
   };
 
   return (
@@ -303,7 +314,6 @@ export function ScenarioCharts({
         className="scenario-charts__svg"
         viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
         width="100%"
-        height="auto"
       >
         <title id={titleId}>{title}</title>
         <desc id={descriptionId}>{description}</desc>
@@ -317,14 +327,14 @@ export function ScenarioCharts({
           fill="none"
           stroke="var(--line, rgba(28, 42, 58, 0.12))"
         />
-        <g transform="translate(42 32)">
+        <g transform={`translate(${INNER_X} ${INNER_Y})`}>
           <text x="0" y="0" className="scenario-charts__title" fill="var(--night)">
             {title}
           </text>
           <text x="0" y="24" className="scenario-charts__description" fill="var(--muted)">
             {description}
           </text>
-          <g transform="translate(0 36)">
+          <g transform={`translate(0 ${HEADER_TO_CHARTS})`}>
             {groups.map((group, groupIndex) => (
               <ChartGroupSvg
                 key={group.id}
@@ -338,7 +348,7 @@ export function ScenarioCharts({
             ))}
           </g>
           {showEquilibrium ? (
-            <g className="scenario-charts__legend" transform="translate(0 406)">
+            <g className="scenario-charts__legend" transform={`translate(0 ${LEGEND_Y})`}>
               <circle cx="7" cy="0" r="5" fill="var(--gold)" />
               <text x="18" y="5" fill="var(--muted)">
                 Marcador dorado: valor de equilibrio.
