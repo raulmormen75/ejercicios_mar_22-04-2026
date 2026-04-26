@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import { SectionBlock } from "./components/SectionBlock";
 import { SummaryImageCard } from "./components/SummaryImageCard";
@@ -7,6 +7,7 @@ import { FormulaBlock } from "./components/FormulaBlock";
 import { advancedNotes, lessonModules, scenarios } from "./content/lesson-content";
 import type { SectionImageSpec } from "./types";
 import { HOTELLING_HERO_IMAGE_PUBLIC_PATH, imageManifest } from "./content/image-manifest";
+import { formatNumber } from "./utils/formatters";
 
 const sections = [
   { id: "hero", label: "Inicio" },
@@ -35,6 +36,26 @@ export default function App() {
     title: scenario.shortLabel,
     ...scenario.equilibrium,
   }));
+
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = window.location.hash.slice(1);
+
+      if (!id) {
+        return;
+      }
+
+      document.getElementById(id)?.scrollIntoView({ block: "start" });
+    };
+
+    const timers = [0, 120, 420, 900].map((delay) => window.setTimeout(scrollToHash, delay));
+    window.addEventListener("hashchange", scrollToHash);
+
+    return () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+      window.removeEventListener("hashchange", scrollToHash);
+    };
+  }, []);
 
   return (
     <div className="app-shell">
@@ -122,13 +143,13 @@ export default function App() {
             {comparisonRows.map((row) => (
               <div key={row.id} className="comparison-row">
                 <span>{row.title}</span>
-                <span>{row.pA}</span>
-                <span>{row.pB}</span>
-                <span>{row.xStar}</span>
-                <span>{row.qA}</span>
-                <span>{row.qB}</span>
-                <span>{row.piA}</span>
-                <span>{row.piB}</span>
+                <span>{formatNumber(row.pA)}</span>
+                <span>{formatNumber(row.pB)}</span>
+                <span>{formatNumber(row.xStar)}</span>
+                <span>{formatNumber(row.qA)}</span>
+                <span>{formatNumber(row.qB)}</span>
+                <span>{formatNumber(row.piA)}</span>
+                <span>{formatNumber(row.piB)}</span>
               </div>
             ))}
           </div>

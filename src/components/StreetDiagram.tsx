@@ -1,3 +1,5 @@
+import { formatNumber } from "../utils/formatters";
+
 interface StreetDiagramProps {
   L: number;
   a: number;
@@ -6,6 +8,7 @@ interface StreetDiagramProps {
 }
 
 export function StreetDiagram({ L, a, b, xStar }: StreetDiagramProps) {
+  const boundedXStar = Math.min(Math.max(xStar, 0), L);
   const scale = (value: number) => 80 + (value / L) * 640;
 
   return (
@@ -22,27 +25,27 @@ export function StreetDiagram({ L, a, b, xStar }: StreetDiagramProps) {
         </linearGradient>
       </defs>
       <rect x="60" y="86" width="680" height="10" rx="5" fill="url(#street-gradient)" />
-      <rect x="60" y="74" width={scale(xStar) - 60} height="34" rx="17" fill="rgba(198, 167, 94, 0.18)" />
+      <rect x="60" y="74" width={scale(boundedXStar) - 60} height="34" rx="17" fill="rgba(198, 167, 94, 0.18)" />
       <rect
-        x={scale(xStar)}
+        x={scale(boundedXStar)}
         y="74"
-        width={740 - scale(xStar)}
+        width={740 - scale(boundedXStar)}
         height="34"
         rx="17"
         fill="rgba(28, 42, 58, 0.12)"
       />
-      <line x1={scale(xStar)} y1="50" x2={scale(xStar)} y2="132" stroke="#6e1f28" strokeWidth="3" strokeDasharray="6 6" />
+      <line x1={scale(boundedXStar)} y1="50" x2={scale(boundedXStar)} y2="132" stroke="#6e1f28" strokeWidth="3" strokeDasharray="6 6" />
       <circle cx={scale(a)} cy="91" r="14" fill="#1c2a3a" />
       <circle cx={scale(b)} cy="91" r="14" fill="#0b0b0b" />
-      <circle cx={scale(xStar)} cy="91" r="11" fill="#c6a75e" stroke="#6e1f28" strokeWidth="3" />
+      <circle cx={scale(boundedXStar)} cy="91" r="11" fill="#c6a75e" stroke="#6e1f28" strokeWidth="3" />
       <text x={scale(a)} y="55" textAnchor="middle" className="street-label">
         Empresa A
       </text>
       <text x={scale(b)} y="55" textAnchor="middle" className="street-label">
         Empresa B
       </text>
-      <text x={scale(xStar)} y="150" textAnchor="middle" className="street-highlight">
-        x* = {xStar}
+      <text x={scale(boundedXStar)} y="150" textAnchor="middle" className="street-highlight">
+        x* = {formatNumber(boundedXStar)}
       </text>
       <text x="72" y="28" className="street-caption">
         Mercado de A
@@ -54,7 +57,7 @@ export function StreetDiagram({ L, a, b, xStar }: StreetDiagramProps) {
         0
       </text>
       <text x="738" y="170" textAnchor="end" className="street-scale">
-        {L}
+        {formatNumber(L)}
       </text>
     </svg>
   );

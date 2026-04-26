@@ -140,7 +140,7 @@ Resumir el escenario 1 con simetría total. Dibujar extremos opuestos, x*=50, pr
       "2. pA = pB = 210",
       "3. x* = 50",
       "qA = qB = 50",
-      "resultado: πA = πB = 10000",
+      "resultado: πA = πB = 10,000",
     ],
   },
   {
