@@ -75,7 +75,7 @@ export function ScenarioLab({ scenarios, images }: ScenarioLabProps) {
     <section id="escenarios" className="scenario-lab">
       <div className="section-block__header">
         <p className="eyebrow">Escenarios resueltos</p>
-        <h2>Laboratorio de decisiones</h2>
+        <h2>Tres escenarios interactivos</h2>
         <p className="section-block__goal">
           Usa este espacio como un simulador: mueve los precios, observa la frontera del mercado
           y revisa cómo cambian la demanda y las ganancias sin perderte en la fórmula.
