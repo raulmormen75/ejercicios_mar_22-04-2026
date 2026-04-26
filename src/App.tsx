@@ -16,7 +16,7 @@ const sections = [
   { id: "consumidor-indiferente", label: "Consumidor indiferente" },
   { id: "demandas-ganancias", label: "Demandas y ganancias" },
   { id: "reacciones-equilibrio", label: "Funciones de reacción y equilibrio" },
-  { id: "escenarios", label: "Laboratorio de decisiones" },
+  { id: "escenarios", label: "Tres escenarios interactivos" },
   { id: "resumen", label: "Qué cambia entre escenarios" },
   { id: "extensiones", label: "Otros escenarios posibles" },
 ];
