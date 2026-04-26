@@ -64,7 +64,7 @@ Explicar visualmente los supuestos del modelo lineal con la misma limpieza compo
     sectionId: "consumidor-indiferente",
     placement: "after-section",
     prompt: `${whiteboardVisualDirection}
-Mostrar cómo el consumidor indiferente divide el mercado. Dibujar la calle, la línea vertical de x* y escribir solo la igualdad de costos y la fórmula final de x* de forma breve.`,
+Explicar visualmente cómo ubicar la frontera x* con una composición más clara y ordenada, siguiendo la limpieza del panel de demandas y ganancias. Usar una columna izquierda con cinco notas breves numeradas y, a la derecha, dos cajas superiores con costo A y costo B, una calle central con A, B, a, b, mercado de A, mercado de B y una línea punteada vertical para frontera x*, más una caja inferior con la fórmula final de x*. Priorizar jerarquía visual, alineación uniforme y texto corto muy legible.`,
     alt: "Síntesis visual del consumidor indiferente como frontera de mercado entre A y B.",
     caption: "La frontera x* resume el corazón del ejercicio.",
     quality: "medium",
@@ -74,10 +74,10 @@ Mostrar cómo el consumidor indiferente divide el mercado. Dibujar la calle, la 
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/consumidor-indiferente.png`,
     sketchLines: [
       "1. iguala costo A = costo B",
-      "2. despeja x",
-      "3. aparece x*",
-      "izquierda: compra A",
-      "derecha: compra B",
+      "2. usa dA = x - a",
+      "3. usa dB = b - x",
+      "4. izquierda compra A",
+      "5. derecha compra B",
     ],
   },
   {
