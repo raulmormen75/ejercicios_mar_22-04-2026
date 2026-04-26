@@ -63,8 +63,11 @@ export interface ScenarioDefinition {
   id: "escenario-1" | "escenario-2" | "escenario-3";
   title: string;
   shortLabel: string;
+  statement: string;
   params: LinearParams;
   equilibrium: LinearResults;
+  solutionSteps: FormulaStep[];
+  equilibriumInterpretation: string;
   whyItChanges: string;
   verificationNote: string;
 }

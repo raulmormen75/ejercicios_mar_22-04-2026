@@ -161,6 +161,8 @@ export const scenarios: ScenarioDefinition[] = [
     id: "escenario-1",
     title: "Escenario 1: simetría total",
     shortLabel: "Caso base",
+    statement:
+      "La calle mide 100 metros. La empresa A está en x=0 y la empresa B en x=100. Las dos tienen costo marginal 10 y el transporte cuesta t=2 por cada metro. Como todo es simétrico, vamos a comprobar si el mercado se divide exactamente a la mitad.",
     params: {
       L: 100,
       a: 0,
@@ -177,6 +179,40 @@ export const scenarios: ScenarioDefinition[] = [
       cB: 10,
       t: 2,
     }),
+    solutionSteps: [
+      {
+        label: "1. 📌 Datos del ejercicio",
+        math: "L=100,\\ a=0,\\ b=100,\\ c_A=10,\\ c_B=10,\\ t=2",
+        description: "Estos son los datos que vienen en el enunciado. A y B están en los extremos, y ninguna tiene ventaja de costos.",
+      },
+      {
+        label: "2. 🧮 Reacciones de precios",
+        math: "R_A=t(a+b)+c_A=2(0+100)+10=210,\\quad R_B=t(2L-a-b)+c_B=2(200-0-100)+10=210",
+        description: "Primero calculamos los valores que entran a las respuestas de cada empresa. Salen iguales porque el caso está balanceado.",
+      },
+      {
+        label: "3. 💰 Precios de equilibrio",
+        math: "p_A^*=\\frac{2R_A+R_B}{3}=\\frac{2(210)+210}{3}=210,\\quad p_B^*=\\frac{R_A+2R_B}{3}=\\frac{210+2(210)}{3}=210",
+        description: "Ahora usamos esos valores para encontrar los precios. Como ambos lados son iguales, las dos empresas cobran 210.",
+      },
+      {
+        label: "4. ✅ Comprobación rápida",
+        math: "\\frac{2(0+100)+210+10}{2}=210,\\quad \\frac{2(200-0-100)+210+10}{2}=210",
+        description: "Si una empresa ve que la otra cobra 210, su mejor respuesta también es cobrar 210. Por eso el precio queda estable.",
+      },
+      {
+        label: "5. 📍 Consumidor indiferente y demanda",
+        math: "x^*=\\frac{0+100}{2}+\\frac{210-210}{2(2)}=50,\\quad q_A=50,\\quad q_B=100-50=50",
+        description: "El consumidor indiferente es quien está justo donde comprar en A o en B cuesta lo mismo. Aquí queda en 50, así que cada empresa atiende 50 consumidores.",
+      },
+      {
+        label: "6. ✅ Ganancias",
+        math: "\\pi_A=(210-10)(50)=10{,}000,\\quad \\pi_B=(210-10)(50)=10{,}000",
+        description: "La ganancia sale de restar el costo al precio y multiplicar por los consumidores. Como todo es igual, ambas ganan 10,000.",
+      },
+    ],
+    equilibriumInterpretation:
+      "Este escenario confirma la intuición: si las empresas están igual de ubicadas y tienen los mismos costos, ninguna queda con ventaja. A y B cobran 210, atienden 50 consumidores y ganan 10,000.",
     whyItChanges:
       "Ambas empresas están en extremos opuestos y tienen los mismos costos. Por eso, todo queda repartido en partes iguales.",
     verificationNote:
@@ -186,6 +222,8 @@ export const scenarios: ScenarioDefinition[] = [
     id: "escenario-2",
     title: "Escenario 2: asimetría en costos",
     shortLabel: "Ventaja tecnológica",
+    statement:
+      "La calle mide 60 metros. A está en x=0 y B en x=60. A tiene costo marginal 20 y B tiene costo marginal 32. Como A produce más barato, veremos cómo esa ventaja mueve el mercado hacia su lado.",
     params: {
       L: 60,
       a: 0,
@@ -202,6 +240,40 @@ export const scenarios: ScenarioDefinition[] = [
       cB: 32,
       t: 1,
     }),
+    solutionSteps: [
+      {
+        label: "1. 📌 Datos del ejercicio",
+        math: "L=60,\\ a=0,\\ b=60,\\ c_A=20,\\ c_B=32,\\ t=1",
+        description: "Aquí la diferencia importante está en los costos: A produce más barato que B.",
+      },
+      {
+        label: "2. 🧮 Reacciones de precios",
+        math: "R_A=t(a+b)+c_A=1(0+60)+20=80,\\quad R_B=t(2L-a-b)+c_B=1(120-0-60)+32=92",
+        description: "Calculamos los valores base de cada respuesta. El de B queda más alto porque B tiene mayor costo.",
+      },
+      {
+        label: "3. 💰 Precios de equilibrio",
+        math: "p_A^*=\\frac{2R_A+R_B}{3}=\\frac{2(80)+92}{3}=84,\\quad p_B^*=\\frac{R_A+2R_B}{3}=\\frac{80+2(92)}{3}=88",
+        description: "A puede cobrar menos porque producir le cuesta menos. B cobra más porque su costo es mayor.",
+      },
+      {
+        label: "4. ✅ Comprobación rápida",
+        math: "\\frac{1(0+60)+88+20}{2}=84,\\quad \\frac{1(120-0-60)+84+32}{2}=88",
+        description: "Si B cobra 88, a A le conviene cobrar 84. Si A cobra 84, a B le conviene cobrar 88. Por eso esos precios se sostienen.",
+      },
+      {
+        label: "5. 📍 Consumidor indiferente y demanda",
+        math: "x^*=\\frac{0+60}{2}+\\frac{88-84}{2(1)}=32,\\quad q_A=32,\\quad q_B=60-32=28",
+        description: "La mitad de la calle sería 30, pero la frontera se mueve a 32. Eso significa que A atiende más consumidores que B.",
+      },
+      {
+        label: "6. ✅ Ganancias",
+        math: "\\pi_A=(84-20)(32)=2{,}048,\\quad \\pi_B=(88-32)(28)=1{,}568",
+        description: "A gana más porque tiene menor costo, vende más y mantiene un buen margen por unidad.",
+      },
+    ],
+    equilibriumInterpretation:
+      "Este escenario muestra la ventaja de costos. A cobra 84, vende 32 unidades y gana 2,048. B cobra 88, vende 28 unidades y gana 1,568. La ventaja de A no solo baja su precio: también le permite ganar más mercado.",
     whyItChanges:
       "A produce más barato, puede cobrar menos y empuja la frontera de mercado hacia el lado de B.",
     verificationNote:
@@ -211,6 +283,8 @@ export const scenarios: ScenarioDefinition[] = [
     id: "escenario-3",
     title: "Escenario 3: ubicaciones interiores",
     shortLabel: "Agrupamiento equilibrado",
+    statement:
+      "La calle mide 100 metros, pero las empresas ya no están en los extremos: A está en x=20 y B en x=80. Ambas tienen costo marginal 0 y el transporte cuesta t=1. Aunque están más cerca del centro, siguen ubicadas de forma simétrica.",
     params: {
       L: 100,
       a: 20,
@@ -227,6 +301,40 @@ export const scenarios: ScenarioDefinition[] = [
       cB: 0,
       t: 1,
     }),
+    solutionSteps: [
+      {
+        label: "1. 📌 Datos del ejercicio",
+        math: "L=100,\\ a=20,\\ b=80,\\ c_A=0,\\ c_B=0,\\ t=1",
+        description: "La diferencia con el primer caso es la ubicación: las empresas están dentro de la calle, no en los extremos.",
+      },
+      {
+        label: "2. 🧮 Reacciones de precios",
+        math: "R_A=t(a+b)+c_A=1(20+80)+0=100,\\quad R_B=t(2L-a-b)+c_B=1(200-20-80)+0=100",
+        description: "Calculamos los valores base. Salen iguales porque A y B están a la misma distancia del centro.",
+      },
+      {
+        label: "3. 💰 Precios de equilibrio",
+        math: "p_A^*=\\frac{2R_A+R_B}{3}=\\frac{2(100)+100}{3}=100,\\quad p_B^*=\\frac{R_A+2R_B}{3}=\\frac{100+2(100)}{3}=100",
+        description: "Como los valores base son iguales, los precios de equilibrio también son iguales: 100 y 100.",
+      },
+      {
+        label: "4. ✅ Comprobación rápida",
+        math: "\\frac{1(20+80)+100+0}{2}=100,\\quad \\frac{1(200-20-80)+100+0}{2}=100",
+        description: "Si una empresa cobra 100, la mejor respuesta de la otra también es 100. El equilibrio queda estable.",
+      },
+      {
+        label: "5. 📍 Consumidor indiferente y demanda",
+        math: "x^*=\\frac{20+80}{2}+\\frac{100-100}{2(1)}=50,\\quad q_A=50,\\quad q_B=100-50=50",
+        description: "El consumidor indiferente vuelve a quedar en el centro. A atiende 50 consumidores y B atiende 50.",
+      },
+      {
+        label: "6. ✅ Ganancias",
+        math: "\\pi_A=(100-0)(50)=5{,}000,\\quad \\pi_B=(100-0)(50)=5{,}000",
+        description: "Como venden lo mismo y no tienen costo marginal, las dos empresas ganan 5,000.",
+      },
+    ],
+    equilibriumInterpretation:
+      "Este escenario enseña que moverse hacia el interior no rompe la simetría si ambas empresas quedan balanceadas. A y B cobran 100, atienden 50 consumidores y ganan 5,000.",
     whyItChanges:
       "Las empresas dejan los extremos, pero conservan una simetría perfecta respecto al centro.",
     verificationNote:

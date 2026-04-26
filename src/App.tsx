@@ -16,9 +16,9 @@ const sections = [
   { id: "consumidor-indiferente", label: "Consumidor indiferente" },
   { id: "demandas-ganancias", label: "Demandas y ganancias" },
   { id: "reacciones-equilibrio", label: "Funciones de reacción y equilibrio" },
-  { id: "escenarios", label: "Tres escenarios interactivos" },
+  { id: "escenarios", label: "Guía de escenarios" },
   { id: "resumen", label: "Qué cambia entre escenarios" },
-  { id: "extensiones", label: "Otros escenarios posibles" },
+  { id: "extensiones", label: "Anexos opcionales" },
 ];
 
 const formatLatexNumber = (value: number) => formatNumber(value).replaceAll(",", "{,}");
@@ -200,19 +200,22 @@ export default function App() {
           />
         </section>
 
-        <section id="extensiones" className="section-block">
+        <section id="extensiones" className="section-block section-block--secondary annex-section">
           <div className="section-block__header">
-            <p className="eyebrow">Casos complementarios</p>
-            <h2>Otros escenarios posibles</h2>
+            <p className="eyebrow">Anexos opcionales</p>
+            <h2>Anexos opcionales</h2>
             <p className="section-block__goal">
-              Estas secciones no forman parte del trayecto obligatorio. Se dejan como apoyo cuando el profesor use otra convención o mencione tres empresas.
+              Estos anexos no son necesarios para resolver la tarea. Se dejan como consulta por si el profesor usa otra convención o menciona el caso con tres empresas.
             </p>
           </div>
 
           <div className="extension-grid">
-            <article className="extension-card">
-              <p className="extension-card__tag">Caso 1</p>
-              <h3>{advancedNotes.cuadratico.title}</h3>
+            <details className="extension-card">
+              <summary>
+                <span className="extension-card__tag">Anexo 1</span>
+                <strong>{advancedNotes.cuadratico.title}</strong>
+                <small>Consulta opcional</small>
+              </summary>
               <p>{advancedNotes.cuadratico.summary}</p>
               <div className="formula-grid">
                 {advancedNotes.cuadratico.formulas.map((formula) => (
@@ -232,11 +235,14 @@ export default function App() {
                   text: item,
                 }))}
               />
-            </article>
+            </details>
 
-            <article className="extension-card">
-              <p className="extension-card__tag">Caso 2</p>
-              <h3>{advancedNotes.tresEmpresas.title}</h3>
+            <details className="extension-card">
+              <summary>
+                <span className="extension-card__tag">Anexo 2</span>
+                <strong>{advancedNotes.tresEmpresas.title}</strong>
+                <small>Consulta opcional</small>
+              </summary>
               <p>{advancedNotes.tresEmpresas.summary}</p>
               <div className="formula-grid">
                 {advancedNotes.tresEmpresas.formulas.map((formula) => (
@@ -256,7 +262,7 @@ export default function App() {
                   text: item,
                 }))}
               />
-            </article>
+            </details>
           </div>
         </section>
         <footer className="site-footer" aria-label="Créditos del material">

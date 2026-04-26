@@ -62,6 +62,18 @@ svg {
   max-width: 100%;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 h1,
 h2,
 h3,
@@ -522,6 +534,15 @@ li {
   margin-top: -4px;
 }
 
+.section-block--secondary {
+  background: rgba(255, 253, 248, 0.68);
+  box-shadow: 0 14px 42px rgba(28, 42, 58, 0.06);
+}
+
+.section-block--secondary::before {
+  opacity: 0.42;
+}
+
 .section-block__header,
 .section-block__intuition {
   max-width: 860px;
@@ -797,42 +818,44 @@ li {
 
 .scenario-guide {
   display: grid;
-  gap: 12px;
-  margin-top: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .scenario-guide article {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 4px 12px;
-  padding: 16px;
+  padding: 13px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.065);
 }
 
 .scenario-guide span {
   grid-row: span 2;
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   display: inline-grid;
   place-items: center;
   border-radius: 50%;
   color: #1b1720;
   background: var(--gold);
+  font-size: 0.85rem;
   font-weight: 950;
 }
 
 .scenario-guide strong {
   color: #fff8ec;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .scenario-guide p {
   margin: 0;
   color: rgba(255, 248, 236, 0.72);
-  line-height: 1.55;
-  font-size: 0.9rem;
+  line-height: 1.45;
+  font-size: 0.82rem;
 }
 
 .scenario-tabs {
@@ -887,7 +910,7 @@ li {
 .scenario-results-row {
   margin-top: 18px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: 18px;
   align-items: stretch;
 }
@@ -895,6 +918,10 @@ li {
 .scenario-panel {
   padding: 22px;
   background: rgba(255, 253, 248, 0.95);
+}
+
+.scenario-panel > .step-card {
+  margin-top: 18px;
 }
 
 .scenario-panel__toolbar {
@@ -961,11 +988,39 @@ li {
   margin-top: 16px;
 }
 
-.slider-grid label {
+.slider-control {
   display: grid;
   gap: 8px;
   color: var(--night);
   font-weight: 800;
+}
+
+.slider-control__heading {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slider-actions {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.slider-actions button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(28, 42, 58, 0.14);
+  border-radius: 999px;
+  color: var(--night);
+  background: rgba(198, 167, 94, 0.22);
+  cursor: pointer;
+  font-weight: 950;
+}
+
+.slider-actions button:hover,
+.slider-actions button:focus-visible {
+  background: rgba(198, 167, 94, 0.38);
 }
 
 .slider-grid small {
@@ -1104,14 +1159,78 @@ li {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
+  margin-top: 20px;
 }
 
 .extension-card {
   background: rgba(255, 253, 248, 0.9);
 }
 
+.extension-card summary {
+  display: grid;
+  gap: 6px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.extension-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.extension-card summary::after {
+  content: "Abrir anexo";
+  width: fit-content;
+  margin-top: 6px;
+  padding: 7px 11px;
+  border: 1px solid rgba(28, 42, 58, 0.14);
+  border-radius: 999px;
+  color: var(--night);
+  background: rgba(198, 167, 94, 0.18);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.extension-card[open] summary {
+  margin-bottom: 14px;
+}
+
+.extension-card[open] summary::after {
+  content: "Cerrar anexo";
+}
+
+.extension-card summary strong {
+  color: var(--night);
+  font-family: "Newsreader", serif;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.extension-card summary small {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.annex-section {
+  color: rgba(11, 11, 11, 0.88);
+}
+
+.annex-section .section-block__goal {
+  max-width: 760px;
+}
+
+.annex-section .extension-card {
+  background: rgba(255, 253, 248, 0.74);
+  box-shadow: none;
+}
+
+.annex-section .summary-card {
+  background: rgba(255, 253, 248, 0.68);
+  box-shadow: none;
+}
+
 .extension-card__tag {
-  margin: 0 0 8px;
+  margin: 0 0 2px;
+  display: block;
   color: var(--wine);
   font-size: 0.82rem;
   font-weight: 900;
