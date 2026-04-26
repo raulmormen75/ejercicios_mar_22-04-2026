@@ -1086,6 +1086,12 @@ li {
   font-size: 0.95rem;
 }
 
+.comparison-row .katex {
+  color: inherit;
+  font-size: 1.08em;
+  font-weight: 700;
+}
+
 .comparison-row--head {
   color: #fff8ec;
   background: var(--night);

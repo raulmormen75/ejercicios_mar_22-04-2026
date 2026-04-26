@@ -21,6 +21,8 @@ const sections = [
   { id: "extensiones", label: "Rutas opcionales" },
 ];
 
+const formatLatexNumber = (value: number) => formatNumber(value).replaceAll(",", "{,}");
+
 export default function App() {
   const images = useMemo(
     () =>
@@ -132,32 +134,54 @@ export default function App() {
           <div className="comparison-table">
             <div className="comparison-row comparison-row--head">
               <span>Escenario</span>
-              <span>pA</span>
-              <span>pB</span>
-              <span>x*</span>
-              <span>qA</span>
-              <span>qB</span>
-              <span>πA</span>
-              <span>πB</span>
+              <span>
+                <InlineMath math="p_A" />
+              </span>
+              <span>
+                <InlineMath math="p_B" />
+              </span>
+              <span>
+                <InlineMath math="x^*" />
+              </span>
+              <span>
+                <InlineMath math="q_A" />
+              </span>
+              <span>
+                <InlineMath math="q_B" />
+              </span>
+              <span>
+                <InlineMath math="\\pi_A" />
+              </span>
+              <span>
+                <InlineMath math="\\pi_B" />
+              </span>
             </div>
             {comparisonRows.map((row) => (
               <div key={row.id} className="comparison-row">
                 <span>{row.title}</span>
-                <span>{formatNumber(row.pA)}</span>
-                <span>{formatNumber(row.pB)}</span>
-                <span>{formatNumber(row.xStar)}</span>
-                <span>{formatNumber(row.qA)}</span>
-                <span>{formatNumber(row.qB)}</span>
-                <span>{formatNumber(row.piA)}</span>
-                <span>{formatNumber(row.piB)}</span>
+                <span>
+                  <InlineMath math={formatLatexNumber(row.pA)} />
+                </span>
+                <span>
+                  <InlineMath math={formatLatexNumber(row.pB)} />
+                </span>
+                <span>
+                  <InlineMath math={formatLatexNumber(row.xStar)} />
+                </span>
+                <span>
+                  <InlineMath math={formatLatexNumber(row.qA)} />
+                </span>
+                <span>
+                  <InlineMath math={formatLatexNumber(row.qB)} />
+                </span>
+                <span>
+                  <InlineMath math={formatLatexNumber(row.piA)} />
+                </span>
+                <span>
+                  <InlineMath math={formatLatexNumber(row.piB)} />
+                </span>
               </div>
             ))}
-          </div>
-
-          <div className="formula-grid">
-            <FormulaBlock math={"\\text{Escenario 1: simetría pura}"} />
-            <FormulaBlock math={"\\text{Escenario 2: ventaja de costos para A}"} />
-            <FormulaBlock math={"\\text{Escenario 3: simetría con ubicaciones interiores}"} />
           </div>
 
           <SummaryImageCard
