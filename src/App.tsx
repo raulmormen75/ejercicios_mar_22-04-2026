@@ -179,7 +179,7 @@ export default function App() {
         <section id="extensiones" className="section-block">
           <div className="section-block__header">
             <p className="eyebrow">Extensiones avanzadas</p>
-            <h2>Rutas opcionales para conectar con el pizarrón</h2>
+            <h2>Rutas opcionales para conectar con el cuaderno</h2>
             <p className="section-block__goal">
               Estas secciones no forman parte del trayecto obligatorio. Se dejan como apoyo cuando el profesor use otra convención o mencione tres empresas.
             </p>
