@@ -236,7 +236,7 @@ export const scenarios: ScenarioDefinition[] = [
 
 export const advancedNotes = {
   cuadratico: {
-    title: "Extensión: costo cuadrático",
+    title: "Costo cuadrático",
     summary:
       "Esta ruta muestra por qué td² produce resultados muy distintos y por qué no debe mezclarse con la convención lineal.",
     formulas: [
@@ -251,9 +251,9 @@ export const advancedNotes = {
     summaryImageId: "anexo-cuadratico",
   },
   tresEmpresas: {
-    title: "Extensión: referencia con tres empresas",
+    title: "Referencia con tres empresas",
     summary:
-      "El caso con tres empresas se usa como puente con el pizarrón y deja ver la ventaja natural de la firma del centro.",
+      "El caso con tres empresas se usa como referencia complementaria y deja ver la ventaja natural de la firma del centro.",
     formulas: [
       "q_1=\\frac{1}{4}+\\frac{p_2-p_1}{60}",
       "q_2=\\frac{1}{2}+\\frac{p_1+p_3-2p_2}{60}",
@@ -262,7 +262,7 @@ export const advancedNotes = {
     observations: [
       "Las tres empresas pueden cobrar el mismo precio y aun así vender cantidades distintas.",
       "La empresa central cubre mercado por ambos lados.",
-      "Este bloque se deja como ampliación, no como parte obligatoria del recorrido principal.",
+      "Este caso se deja como apoyo, no como parte obligatoria del recorrido principal.",
     ],
     summaryImageId: "tres-empresas",
   },

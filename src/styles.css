@@ -1073,6 +1073,8 @@ li {
 .comparison-table {
   margin-top: 22px;
   background: rgba(255, 253, 248, 0.92);
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .comparison-row {
@@ -1080,7 +1082,7 @@ li {
   grid-template-columns: 1.7fr repeat(7, minmax(0, 1fr));
 }
 
-.comparison-row span {
+.comparison-row > span {
   padding: 14px 12px;
   border-bottom: 1px solid rgba(28, 42, 58, 0.08);
   font-size: 0.95rem;
@@ -1282,7 +1284,7 @@ li {
   }
 
   .comparison-row {
-    min-width: 760px;
+    min-width: 680px;
   }
 
   .summary-card__image,

@@ -18,7 +18,7 @@ const sections = [
   { id: "reacciones-equilibrio", label: "Funciones de reacción y equilibrio" },
   { id: "escenarios", label: "Laboratorio de decisiones" },
   { id: "resumen", label: "Qué cambia entre escenarios" },
-  { id: "extensiones", label: "Rutas opcionales" },
+  { id: "extensiones", label: "Otros escenarios posibles" },
 ];
 
 const formatLatexNumber = (value: number) => formatNumber(value).replaceAll(",", "{,}");
@@ -202,8 +202,8 @@ export default function App() {
 
         <section id="extensiones" className="section-block">
           <div className="section-block__header">
-            <p className="eyebrow">Extensiones avanzadas</p>
-            <h2>Rutas opcionales para conectar con el cuaderno</h2>
+            <p className="eyebrow">Casos complementarios</p>
+            <h2>Otros escenarios posibles</h2>
             <p className="section-block__goal">
               Estas secciones no forman parte del trayecto obligatorio. Se dejan como apoyo cuando el profesor use otra convención o mencione tres empresas.
             </p>
@@ -211,7 +211,7 @@ export default function App() {
 
           <div className="extension-grid">
             <article className="extension-card">
-              <p className="extension-card__tag">Extensión 1</p>
+              <p className="extension-card__tag">Caso 1</p>
               <h3>{advancedNotes.cuadratico.title}</h3>
               <p>{advancedNotes.cuadratico.summary}</p>
               <div className="formula-grid">
@@ -235,7 +235,7 @@ export default function App() {
             </article>
 
             <article className="extension-card">
-              <p className="extension-card__tag">Extensión 2</p>
+              <p className="extension-card__tag">Caso 2</p>
               <h3>{advancedNotes.tresEmpresas.title}</h3>
               <p>{advancedNotes.tresEmpresas.summary}</p>
               <div className="formula-grid">
