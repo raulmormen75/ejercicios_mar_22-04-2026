@@ -190,7 +190,7 @@ Resumir el escenario 3 con ubicaciones interiores simétricas. Dibujar a=20, b=8
     sectionId: "resumen",
     placement: "after-section",
     prompt: `${whiteboardVisualDirection}
-Comparar visualmente los tres escenarios. Un bloque para simetría, otro para ventaja por costos y otro para simetría interior. Resaltar solo las diferencias principales.`,
+Comparar visualmente los tres escenarios con una composición mucho más limpia y alineada. Usar una columna izquierda con cuatro ideas clave del cierre y, a la derecha, tres tarjetas verticales del mismo tamaño: una para simetría total, otra para ventaja por costos y otra para simetría interior. Cada tarjeta debe resumir pocas etiquetas, un mini diagrama de calle con A, B y x*, y una lectura breve de qué cambia o qué se conserva. Priorizar rejilla clara, espaciado uniforme y comparación rápida entre columnas.`,
     alt: "Síntesis visual comparativa de los tres escenarios lineales y sus diferencias principales.",
     caption: "El cierre compara qué cambia por costos y qué se mantiene por simetría.",
     quality: "medium",
@@ -201,9 +201,9 @@ Comparar visualmente los tres escenarios. Un bloque para simetría, otro para ve
     sketchLines: [
       "1. si todo es igual: mitad y mitad",
       "2. si A cuesta menos: x* se mueve",
-      "3. si se conserva simetría: vuelve al centro",
-      "comparar precios, x* y ganancias",
-      "resultado: costos explican la diferencia",
+      "3. si vuelve la simetría: regresa al centro",
+      "4. costos explican la diferencia",
+      "leer qué cambia y qué se conserva",
     ],
   },
   {
