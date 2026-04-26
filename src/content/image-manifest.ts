@@ -43,7 +43,7 @@ Mostrar una calle recta con empresa A y empresa B. Señalar un consumidor entre 
     sectionId: "modelo-lineal",
     placement: "after-section",
     prompt: `${whiteboardVisualDirection}
-Explicar visualmente que la ruta principal usa costo lineal td y no debe mezclarse con td^2. Dibujar una advertencia breve, una calle con a < b y notas de consumidores uniformes.`,
+Explicar visualmente los supuestos del modelo lineal con la misma limpieza compositiva del panel de demandas y ganancias. Usar una columna izquierda con cuatro notas breves numeradas y, a la derecha, una calle ordenada con A, B, a, b, x*, calle L, consumidores uniformes, una caja de ruta principal td, otra de td^2 va aparte, una nota de costo total = precio + traslado, una caja de mercado cubierto y la fórmula final de x*. Priorizar alineación, espaciado uniforme y texto corto muy legible.`,
     alt: "Síntesis visual de los supuestos del modelo lineal y advertencia para no mezclar la versión cuadrática.",
     caption: "La ruta principal necesita una sola convención para no mezclar resultados incompatibles.",
     quality: "medium",
@@ -52,10 +52,10 @@ Explicar visualmente que la ruta principal usa costo lineal td y no debe mezclar
     assetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.svg`,
     generatedAssetPath: `${HOTELLING_IMAGE_PUBLIC_DIR}/modelo-lineal-supuestos.png`,
     sketchLines: [
-      "1. usar transporte lineal td",
+      "1. usar costo lineal td",
       "2. no mezclar con td²",
-      "3. a < b y consumidores uniformes",
-      "4. mercado cubierto",
+      "3. a < b y calle L",
+      "4. consumidores uniformes",
       "resultado: una sola convención",
     ],
   },
